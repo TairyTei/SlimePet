@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ca75b8c5493ec4bbfc94e5883a630e, type: 3}
+  m_Name: AllPetSkins
+  m_EditorClassIdentifier: 
+  skins:
+  - {fileID: 11400000, guid: 659b635400e2d47459422de52eeaf557, type: 2}
+  - {fileID: 11400000, guid: 5611728ed494bcc4eb8155d73df8fd18, type: 2}
+  - {fileID: 11400000, guid: 88ece8ef105f15b4c86f090ea83b99c0, type: 2}
+  - {fileID: 11400000, guid: 6aba98095400336418d6cb4e3114c5f1, type: 2}
+  - {fileID: 11400000, guid: 42947a188f936b9498b98bf2f854f3c4, type: 2}
+  - {fileID: 11400000, guid: eebee938b56d62b4097fcd41578020eb, type: 2}
+  - {fileID: 11400000, guid: 225d153bdf2df454e932a1581a82266c, type: 2}
+  - {fileID: 11400000, guid: f669c15ed7700564bb2b546ebb6aad32, type: 2}

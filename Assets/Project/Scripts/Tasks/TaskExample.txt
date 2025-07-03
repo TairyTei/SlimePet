@@ -1,0 +1,35 @@
+public class GoGetAStoryTask : Task
+{
+    public GoGetAStoryTask(string taskName, float timeLimit) : base(taskName, timeLimit)
+    {
+        
+    }
+    public override void TaskStart()
+    {
+
+    }
+    public override void Actions()
+    {
+
+    }
+    public override void TaskInterrupt()
+    {
+
+    }
+    public override void TaskEnd()
+    {
+
+    }
+    public override void TaskFail()
+    {
+
+    }
+    public override bool isDone()
+    {
+        return true;
+    }
+    public override bool isFailed()
+    {
+        return false;
+    }
+}

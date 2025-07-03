@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: EmptyHat
+  m_EditorClassIdentifier: 
+  hatID: EmptyHat
+  namePath: Hats\EmptyHat
+  hatSprite: {fileID: 0}
+  price: 0
+  isVisible: 1
+  isGift: 0
+  monologues:
+  - {fileID: 11400000, guid: eeedd36a7dc5bd34f9df497eea2230a3, type: 2}
+  - {fileID: 11400000, guid: 25c28edea255de64f906274682585598, type: 2}
+  - {fileID: 11400000, guid: 52b09b2819684d647a64f8df91b478d6, type: 2}
+  - {fileID: 11400000, guid: f49c2e575b3f11543845c425634284ac, type: 2}
+  - {fileID: 11400000, guid: 537a79bdcd1f63740b63a4d4b468bfdd, type: 2}

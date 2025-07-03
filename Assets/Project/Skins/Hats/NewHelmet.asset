@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: NewHelmet
+  m_EditorClassIdentifier: 
+  hatID: NewHelmet
+  namePath: Hats\NewHelmet
+  hatSprite: {fileID: -447664569, guid: 497562e0e34901d459bc489d66e70503, type: 3}
+  price: 250
+  isVisible: 1
+  isGift: 0
+  monologues:
+  - {fileID: 11400000, guid: 918cc902d1cc6294e8c5119847f7a6f4, type: 2}
+  - {fileID: 11400000, guid: 105fc07b4ce6cfa4294579eed1dfc33b, type: 2}

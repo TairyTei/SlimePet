@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: BrownBandana
+  m_EditorClassIdentifier: 
+  hatID: BrownBandana
+  namePath: Hats\BrownBandana
+  hatSprite: {fileID: 495132216, guid: 497562e0e34901d459bc489d66e70503, type: 3}
+  price: 150
+  isVisible: 1
+  isGift: 0
+  monologues:
+  - {fileID: 11400000, guid: e33289892045b804cb9386656685f4c6, type: 2}
+  - {fileID: 11400000, guid: dadee8060a0fae247a992702debe4c49, type: 2}
+  - {fileID: 11400000, guid: 0ee23db145c5f704ca72aa1ae45c8ae9, type: 2}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: GreenBandana
+  m_EditorClassIdentifier: 
+  hatID: GreenBandana
+  namePath: Hats\GreenBandana
+  hatSprite: {fileID: -349130515, guid: 497562e0e34901d459bc489d66e70503, type: 3}
+  price: 150
+  isVisible: 1
+  isGift: 0
+  monologues:
+  - {fileID: 11400000, guid: 6b07efe7d2f51264d978d15768105cd0, type: 2}
+  - {fileID: 11400000, guid: 3863b96c64d82b74faa51fdd4b4dff21, type: 2}
+  - {fileID: 11400000, guid: 9ad2affaac6142c48be1af9909567174, type: 2}

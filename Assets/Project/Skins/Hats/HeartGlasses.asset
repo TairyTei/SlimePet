@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: HeartGlasses
+  m_EditorClassIdentifier: 
+  hatID: HeartGlasses
+  namePath: Hats\HeartGlasses
+  hatSprite: {fileID: -758739337, guid: 497562e0e34901d459bc489d66e70503, type: 3}
+  price: 200
+  isVisible: 1
+  isGift: 0
+  monologues:
+  - {fileID: 11400000, guid: 146f7ba68630c774d9042f185ac7093b, type: 2}
+  - {fileID: 11400000, guid: 96bc949c406f0a04b9723d40b8706c12, type: 2}
+  - {fileID: 11400000, guid: 59ffee3510c69044c8c82ea7e01bf2a1, type: 2}

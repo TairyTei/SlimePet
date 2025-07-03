@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: Feather
+  m_EditorClassIdentifier: 
+  hatID: Feather
+  namePath: Hats\Feather
+  hatSprite: {fileID: 3380741325406815266, guid: 12f16a22bb0cb18409448004d7a5ec08, type: 3}
+  price: 999
+  isVisible: 0
+  isGift: 1
+  monologues:
+  - {fileID: 11400000, guid: f0fd0a40832718a47827be6a136b83cd, type: 2}
+  - {fileID: 11400000, guid: c1b0f23e7552c4b40b886ea0cc05ff1f, type: 2}

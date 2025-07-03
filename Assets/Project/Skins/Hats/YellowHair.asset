@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: YellowHair
+  m_EditorClassIdentifier: 
+  hatID: YellowHair
+  namePath: Hats\YellowHair
+  hatSprite: {fileID: 5823731497485677392, guid: 497562e0e34901d459bc489d66e70503, type: 3}
+  price: 75
+  isVisible: 1
+  isGift: 0
+  monologues:
+  - {fileID: 11400000, guid: dbd9c9049aa6114468a1b18a776f5056, type: 2}
+  - {fileID: 11400000, guid: 1f45934005e8d5144b3a028c495ac968, type: 2}

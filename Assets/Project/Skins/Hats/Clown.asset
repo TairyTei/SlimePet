@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc94c57639b83244af115d561ef5e95, type: 3}
+  m_Name: Clown
+  m_EditorClassIdentifier: 
+  hatID: Clown
+  namePath: Hats\Clown
+  hatSprite: {fileID: 1149061604, guid: 497562e0e34901d459bc489d66e70503, type: 3}
+  price: 250
+  isVisible: 1
+  isGift: 0
+  monologues:
+  - {fileID: 11400000, guid: 4107c69a56f1d7240aea09770226f0da, type: 2}
+  - {fileID: 11400000, guid: 1528a0ebccf14a34fad31458492c033a, type: 2}
+  - {fileID: 11400000, guid: b83f01869fa965b42b4e5b5bde1bfc1a, type: 2}
+  - {fileID: 11400000, guid: ca005570cfe2d814790ea15c699bf6aa, type: 2}
+  - {fileID: 11400000, guid: e24dade68b2975d40b9857752c34ee6f, type: 2}
