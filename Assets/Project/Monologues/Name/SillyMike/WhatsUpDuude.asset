@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: "What\u2019s up, du-ude!"
-    textPath: 
+    textPath: Monologues\Name/SillyMike/WhatsUpDuude
     time: 3
   requiredName: Silly Mike

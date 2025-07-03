@@ -55,7 +55,7 @@ public class Pet : MonoBehaviour, IObjectFunction
     public static Pet Instance { get; private set; }
 
     public const float middleTick = 15;
-    public const float largeTick = 30;
+    public const float largeTick = 1800;
     void Awake()
     {
         Instance = this;

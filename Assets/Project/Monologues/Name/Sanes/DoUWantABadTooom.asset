@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: DO U WANT A BAD TOOOOOOOOOM????? HUH??????
-    textPath: 
+    textPath: Monologues\Name/Sanes/DoUWantABadTooom
     time: 3
   requiredName: Sanes

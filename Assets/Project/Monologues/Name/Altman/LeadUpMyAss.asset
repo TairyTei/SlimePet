@@ -16,6 +16,6 @@ MonoBehaviour:
     text: "\u0421\u0432\u0438\u043D\u0435\u0446 \u043C\u043D\u0435 \u0432 \u0437\u0430\u0434,
       \u0442\u044B \u0442\u043E\u043B\u044C\u043A\u043E \u0433\u043B\u044F\u043D\u044C
       \u043D\u0430 \u044D\u0442\u043E!"
-    textPath: 
+    textPath: Monologues\Name/Altman/LeadUpMyAss
     time: 3
   requiredName: "\u0410\u043B\u044C\u0442\u043C\u0430\u043D"

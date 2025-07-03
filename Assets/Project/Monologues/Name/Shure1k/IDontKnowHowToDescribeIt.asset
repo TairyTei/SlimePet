@@ -15,6 +15,6 @@ MonoBehaviour:
   monologue:
     text: "\u042F \u043D\u0435 \u0437\u043D\u0430\u044E \u043A\u0430\u043A \u043E\u043F\u0438\u0441\u0430\u0442\u044C
       \u044D\u0442\u043E\u2026 \u042F \u0447\u0443\u0432\u0441\u0442\u0432\u0443\u044E!"
-    textPath: 
+    textPath: Monologues\Name/Shure1k/IDontKnowHowToDescribeIt
     time: 3
   requiredName: Shure-1k

@@ -6,13 +6,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Story", menuName = "My/Stroies/CheckParts_Story", order = 2)]
 public class CheckParts_Story : Story {
 
-    public int requireHistoryID;
+    public List<int> requireHistoryID = new List<int>();
     public override bool Condition()
     {
-        if (PlayerPrefs.GetInt("Story_" + requireHistoryID) != 0)
+        foreach (int id in requireHistoryID)
         {
-            return true;
+            if (PlayerPrefs.GetInt("Story_" + id) == 0)
+            {
+                return false;
+            }
         }
-        return false;
+            return true;
+        
     }
 }

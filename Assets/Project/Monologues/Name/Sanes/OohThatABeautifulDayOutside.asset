@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: OOOOOOHH THAT A BEAUTIFUL DAY OUTSIDE!
-    textPath: 
+    textPath: Monologues\Name/Sanes/OohThatABeautifulDayOutside
     time: 3
   requiredName: Sanes

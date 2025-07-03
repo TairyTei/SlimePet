@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: '*Save you*'
-    textPath: 
+    textPath: Monologues\Name/Frisk/SaveYou
     time: 3
   requiredName: Frisk

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: I am so sorry.
-    textPath: 
+    textPath: Monologues\Name/Alpatyk/IAmSoSorry
     time: 3
   requiredName: Alpatyk

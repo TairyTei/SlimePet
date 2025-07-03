@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: "\u042F \u043D\u0435 \u0437\u043D\u0430\u044E\u2026"
-    textPath: 
+    textPath: Monologues\Name/Tei/IDK
     time: 3
   requiredName: Tei

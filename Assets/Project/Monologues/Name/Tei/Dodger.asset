@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: Dodger will be realeased in January
-    textPath: 
+    textPath: Monologues\Name/Tei/Dodger
     time: 3
   requiredName: Tei

@@ -171,6 +171,17 @@ MonoBehaviour:
   tags:
   - Poop
   interactCursorSprite: {fileID: -6438760948649367242, guid: c453a742052200e4cb85d20601bef968, type: 3}
+  overlookMonologues:
+  - {fileID: 11400000, guid: 32d64682e9dd4ad4c8bd99729f3e7cb5, type: 2}
+  - {fileID: 11400000, guid: 37ed31f9a5ca1074a8b677a00fcc40a3, type: 2}
+  - {fileID: 11400000, guid: 6038a00144cdf2b4198095b86a1e7ca9, type: 2}
+  - {fileID: 11400000, guid: 6bb8cd795bcc6eb479964a99bdea8c77, type: 2}
+  - {fileID: 11400000, guid: 253dc767e9cef0244a49023f3b7b6995, type: 2}
+  - {fileID: 11400000, guid: 72dd93a6fcffbbe4d969eda96d8c8779, type: 2}
+  - {fileID: 11400000, guid: 1d133cc30308e954f8b455df80f7c28a, type: 2}
+  - {fileID: 11400000, guid: 47d9bc4b017f4fb4a903578afaa1c8df, type: 2}
+  - {fileID: 11400000, guid: bcb3955b996d77146af2e07223d838ba, type: 2}
+  - {fileID: 11400000, guid: d15e7ac4ccd9e72478c063cb6f73a1a3, type: 2}
   maxHp: 3
   regenerationDelay: 0.25
   hp: 3

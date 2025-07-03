@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: "\u042F \u0436\u0438\u0432\u043E\u0439!"
-    textPath: 
+    textPath: Monologues\Name/Shure1k/AmAlive
     time: 3
   requiredName: Shure-1k

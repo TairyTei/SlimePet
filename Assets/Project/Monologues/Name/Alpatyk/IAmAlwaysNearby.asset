@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: I am always nearby to help you.
-    textPath: 
+    textPath: Monologues\Name/Alpatyk/IAmAlwaysNearby
     time: 3
   requiredName: Alpatyk

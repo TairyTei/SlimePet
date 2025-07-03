@@ -9,7 +9,6 @@ public class Ball : RoomObject, IObjectFunction {
         base.Put();
 
         Pet.Instance.AddTask(ObjectTask());
-        MonologueWindow.instance.CreateMonologue(new Monologue("BALLLLLL", 2));
     }
     public void RMB_Click(){
         if(Pet.Instance.TaskCount >= 3) return;

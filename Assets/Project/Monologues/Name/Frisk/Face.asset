@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: -_-
-    textPath: 
+    textPath: Monologues\Name/Frisk/Face
     time: 3
   requiredName: Frisk

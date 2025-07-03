@@ -171,6 +171,12 @@ MonoBehaviour:
   tags:
   - food
   interactCursorSprite: {fileID: 8589531035368735815, guid: c453a742052200e4cb85d20601bef968, type: 3}
+  overlookMonologues:
+  - {fileID: 11400000, guid: 7f7825e7a6e5bf64fa067eed9567efd5, type: 2}
+  - {fileID: 11400000, guid: 4bc9d1acdf726e146951af22441807f0, type: 2}
+  - {fileID: 11400000, guid: 7247c6ec45827554cb274b2a4d7fd732, type: 2}
+  - {fileID: 11400000, guid: 10d72f9c989debd49915b6528256963a, type: 2}
+  - {fileID: 11400000, guid: e7f5d1eabe3d98a46b9ec3b3ae90f71d, type: 2}
   satiety: 3
   love: 1.5
   poopiness: 1.5

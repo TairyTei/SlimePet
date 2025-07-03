@@ -15,6 +15,6 @@ MonoBehaviour:
   monologue:
     text: "\u0410 \u043D\u0443 \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439 \u043A\u0430
       \u043C\u0435\u043D\u044F \u043F\u043E\u0439\u043C\u0430\u0442\u044C."
-    textPath: 
+    textPath: Monologues\Name/Emil/NowTryToCatchMe
     time: 3
   requiredName: "\u042D\u043C\u0438\u043B\u044C"

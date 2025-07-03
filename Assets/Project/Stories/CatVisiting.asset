@@ -15,4 +15,4 @@ MonoBehaviour:
   _storyTextPath: Stories/CatVisiting/CatVisiting
   _editorPreview: 
   hatGift: {fileID: 0}
-  requireHistoryID: 2
+  requireHistoryID: 02000000

@@ -114,6 +114,8 @@ public class SaveManger
             obj.transform.position = new Vector2(xPos, yPos);
 
             obj.gameObject.SetActive(true);
+            obj.Put();
+            
         }
     }
     private static void SaveFurniture()
