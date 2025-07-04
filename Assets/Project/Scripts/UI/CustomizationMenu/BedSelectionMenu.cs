@@ -54,6 +54,7 @@ public class BedSelectionMenu : MonoBehaviour
         if (bed.bedSprite != null)
         {
             bedImage.sprite = bed.bedSprite;
+            ImageSpriteResizer.Resize(bedImage);
             bedImage.gameObject.SetActive(true);
         }
         else

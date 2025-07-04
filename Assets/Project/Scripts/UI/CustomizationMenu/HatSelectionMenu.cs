@@ -12,6 +12,7 @@ public class HatSelectionMenu : MonoBehaviour
     public TextMeshProUGUI priceOfHat;
     public TextMeshProUGUI buttonText;
     public Image hatImage;
+    public Image petImage;
     public Transform hatListParent;
     public GameObject hatButtonPrefab;
     public AllHats allHats;
@@ -29,6 +30,8 @@ public class HatSelectionMenu : MonoBehaviour
     }
      public void OpenHat(Hat hat)
     {
+        SkinManger sm = SkinManger.instance;
+        petImage.sprite = sm.GetSprite(petImage.sprite.name);
         openedHat = hat;
         openedHatID = allHats.hats.IndexOf(hat);
         if (SkinManger.instance.GetActiveHat() == hat)
@@ -55,6 +58,7 @@ public class HatSelectionMenu : MonoBehaviour
         if (hat.hatSprite != null)
         {
             hatImage.sprite = hat.hatSprite;
+            ImageSpriteResizer.Resize(hatImage);
             hatImage.gameObject.SetActive(true);
         }
         else

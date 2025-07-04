@@ -75,6 +75,7 @@ public class TaskGenerator{
     }
     public static Task PlayTask()
     {
+        List<Task> availableTasks = new List<Task>();
 
         RoomObject[] balls = FurnitureBox.instance.GetObjectsWithTag("ball");
         if (balls.Length > 0)
@@ -82,9 +83,20 @@ public class TaskGenerator{
             int randomBall = Random.Range(0, balls.Length - 1);
             Rigidbody2D ball = balls[randomBall].GetComponent<Rigidbody2D>();
             Task playWithBall = new PlayWithBallTask("Play with " + balls[randomBall].nameOfObject, 15, ball);
-            return playWithBall;
+            availableTasks.Add(playWithBall);
         }
-        return null;
+
+        if (FurnitureBox.instance.GetObjectsWithTag("toyMouse").Length > 0)
+        {
+            RoomObject toyMouse = FurnitureBox.instance.GetObjectsWithTag("toyMouse")[0];
+            availableTasks.Add(toyMouse.ObjectTask());
+        }
+
+        if (availableTasks.Count == 0)
+            return null;
+
+        int randomTask = Random.Range(0, availableTasks.Count);
+        return availableTasks[randomTask]; 
     }
     public static Task EatTask(){
         RoomObject[] food = FurnitureBox.instance.GetObjectsWithTag("food");

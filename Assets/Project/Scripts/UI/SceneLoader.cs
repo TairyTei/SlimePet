@@ -13,8 +13,10 @@ public class SceneLoader : MonoBehaviour
 
     [Header("Settings")]
     public string sceneNameToLoad;
+    public float minLoadTime = 0.5f;
 
     private AsyncOperation loadingOperation;
+    private float loadStartTime;
 
     void Start()
     {
@@ -23,23 +25,39 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
-        if (loadingScreen != null) loadingScreen.SetActive(true);
-        if (progressBar != null) progressBar.gameObject.SetActive(true);
-
-        if (progressBar != null) progressBar.fillAmount = 0f;
-        if (progressText != null) progressText.text = "0%";
+        loadStartTime = Time.time;
+        
+        if (loadingScreen != null) 
+            loadingScreen.SetActive(true);
+        
+        if (progressBar != null) 
+        {
+            progressBar.gameObject.SetActive(true);
+            progressBar.fillAmount = 0f;
+        }
+        
+        if (progressText != null) 
+            progressText.text = "0%";
 
         loadingOperation = SceneManager.LoadSceneAsync(sceneNameToLoad);
         loadingOperation.allowSceneActivation = false;
 
         while (!loadingOperation.isDone)
         {
-            float progress = Mathf.Clamp01(loadingOperation.progress / 0.9f);
+            float elapsedTime = Time.time - loadStartTime;
+            float artificialProgress = Mathf.Clamp01(elapsedTime / minLoadTime);
+            
+            float realProgress = Mathf.Clamp01(loadingOperation.progress / 0.9f);
+            
+            float displayProgress = Mathf.Min(artificialProgress, realProgress);
 
-            if (progressBar != null) progressBar.fillAmount = progress;
-            if (progressText != null) progressText.text = Mathf.Round(progress * 100f) + "%";
+            if (progressBar != null) 
+                progressBar.fillAmount = displayProgress;
+            
+            if (progressText != null) 
+                progressText.text = Mathf.Round(displayProgress * 100f) + "%";
 
-            if (loadingOperation.progress >= 0.9f)
+            if (loadingOperation.progress >= 0.9f && elapsedTime >= minLoadTime)
             {
                 loadingOperation.allowSceneActivation = true;
             }

@@ -9,7 +9,7 @@ public class FurnitureBox : MonoBehaviour
 {
     public GameObject menu;
     public TextMeshProUGUI nameOfFurniture;
-    public TextMeshProUGUI descriptionOfFurniture;
+    //public TextMeshProUGUI descriptionOfFurniture;
     public GameObject priceOfFurniturePanel;
     public TextMeshProUGUI priceOfFurniture;
     public TextMeshProUGUI buttonText;
@@ -73,8 +73,10 @@ public class FurnitureBox : MonoBehaviour
         isOpenedFurnitureBought = PlayerPrefs.GetInt("IsFurniture" + openedFurnitureID + "Bought") == 1;
 
         nameOfFurniture.text = roomObject.nameOfObject;
-        descriptionOfFurniture.text = roomObject.descriptionOfObject;
+        //descriptionOfFurniture.text = roomObject.descriptionOfObject;
         furnitureImage.sprite = roomObject.icon;
+        furnitureImage.SetNativeSize();
+        //ImageSpriteResizer.Resize(furnitureImage);
         bool isThere = furnitureInRoom.Contains(roomObject);
 
         if (isOpenedFurnitureBought)

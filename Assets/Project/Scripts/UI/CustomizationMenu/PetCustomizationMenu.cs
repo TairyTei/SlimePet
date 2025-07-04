@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PetCustomizationMenu : MonoBehaviour
 {
+    public Image petImage;
+    public Image hatImage;
     public TMP_InputField nameField;
     public TextMeshProUGUI dateOfBirth;
     public TextMeshProUGUI coinCount;
@@ -24,6 +26,12 @@ public class PetCustomizationMenu : MonoBehaviour
 
         DateTime createDate = Pet.Instance.CreateDate;
         int totalDays = (int)(DateTime.Now - createDate).TotalDays;
+
+        SkinManger sm = SkinManger.instance;
+
+        petImage.sprite = sm.GetSprite(petImage.sprite.name);
+        hatImage.sprite = sm.allHats.hats[sm.ActiveHatID].hatSprite;
+        ImageSpriteResizer.Resize(hatImage);
 
         int years = Mathf.FloorToInt(totalDays / 365);
         int month = Mathf.FloorToInt(totalDays % 365 / 30);
