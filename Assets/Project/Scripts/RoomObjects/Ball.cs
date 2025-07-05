@@ -23,7 +23,7 @@ public class Ball : RoomObject, IObjectFunction {
             return base.ObjectTask();
         }
         Rigidbody2D ball = this.GetComponent<Rigidbody2D>();
-        Task playWithBall = new PlayWithBallTask("Play with " + nameOfObject, 15, ball);
+        Task playWithBall = new PlayWithBallTask("Play with " + id, 15, ball);
         return playWithBall;
     }
     void OnCollisionEnter2D(Collision2D collision)

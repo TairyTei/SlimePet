@@ -72,6 +72,7 @@ public class MonologueWindow : MonoBehaviour {
     }
     public void RandomHatMonologue(){
         Hat hat = SkinManger.instance.GetActiveHat();
+        if (hat.monologues.Count == 0) return;
         RandomMonologueFromList(hat.monologues);
     }
 }

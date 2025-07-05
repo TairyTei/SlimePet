@@ -13,7 +13,6 @@ public class SettingsMenu : MonoBehaviour
     public Toggle launchWithWindows;
     public Toggle petCatchesCursor;
     public Slider musicVolume, mainVolume, systemVolume;
-    public TMP_Dropdown displayChoise;
     [SerializeField] private MusicPlayer musicPlayer;
     public GameObject[] tabs;
 
@@ -29,16 +28,8 @@ public class SettingsMenu : MonoBehaviour
         musicVolume.value = settings.musicVolume;
         mainVolume.value = settings.mainVolume;
         systemVolume.value = settings.systemVolume;
-        //screenChoise
-        Display[] displays = Display.displays;
-        displayChoise.options.Clear();
-        for (int i = 0; i < displays.Length; i++)
-        {
-            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData("Display " + (i + 1));
-            displayChoise.options.Add(option);
-        }
     }
-    private void ApplySettings()
+    public void ApplySettings()
     {
         Settings settings = SettingsManager.insntace.Settings;
 
@@ -51,7 +42,6 @@ public class SettingsMenu : MonoBehaviour
         settings.systemVolume = systemVolume.value;
         PlayerPrefs.SetFloat("SystemVolume", settings.systemVolume);
         
-        SettingsManager.insntace.Settings.display = displayChoise.value;
         SettingsManager.insntace.UpdateSettings();
     }
     public void OpenTab(int tabIndex)
@@ -89,13 +79,6 @@ public class SettingsMenu : MonoBehaviour
     {
         menu.SetActive(false);
         ApplySettings();
-    }
-    public void ChangeDisplay()
-    {
-        int display = displayChoise.value;
-        Monologue monologue = new Monologue("Теперь я на " + (display + 1) + " мониторе", 5f);
-        MonologueWindow.instance.CreateMonologue(monologue);
-        TransparentWindow.Instance.MoveToMonitor(display);
     }
     public void DrawLanguageDropdown()
     {

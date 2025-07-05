@@ -19,7 +19,8 @@ public class CustomizationMenu : MonoBehaviour
             tabs[i].SetActive(isCurrent);
         }
     }
-    public void Open(){
+    public void Open()
+    {
         if (menu.activeSelf)
         {
             Close();
@@ -31,6 +32,11 @@ public class CustomizationMenu : MonoBehaviour
         menu.SetActive(true);
 
         petCustomizationMenu.Open();
+
+        Hat activeHat = SkinManger.instance.GetActiveHat();
+        hatSelectionMenu.OpenHat(activeHat);
+        BedSkin activeBed = SkinManger.instance.GetActiveBed();
+        bedSelectionMenu.OpenBed(activeBed);
         //hatSelectionMenu.UpdateHatList();
         //bedSelectionMenu.UpdateBedList();
     }

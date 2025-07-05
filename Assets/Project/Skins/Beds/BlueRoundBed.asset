@@ -15,4 +15,4 @@ MonoBehaviour:
   bedID: BlueRoundBed
   namePath: Beds\BlueRoundBed
   price: 50
-  bedSprite: {fileID: 5509211431720168150, guid: 497562e0e34901d459bc489d66e70503, type: 3}
+  bedSprite: {fileID: -4713437892599113350, guid: 497562e0e34901d459bc489d66e70503, type: 3}

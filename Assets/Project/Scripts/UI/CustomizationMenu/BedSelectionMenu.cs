@@ -66,18 +66,11 @@ public class BedSelectionMenu : MonoBehaviour
         foreach(Transform child in bedListParent){
             Destroy(child.gameObject);
         }
-        bool isSomeBedOpened = false;
         for (int i = 0; i < allBeds.beds.Count; i++)
         {
             GameObject createdButton = Instantiate(bedButtonPrefab, bedListParent);
             ChooseBedButton button = createdButton.GetComponent<ChooseBedButton>();
             button.Set(this, allBeds.beds[i]);
-
-            if (!isSomeBedOpened)
-            {
-                OpenBed(allBeds.beds[i]);
-                isSomeBedOpened = true;
-            }
         }
         RectTransform rt = bedListParent.GetComponent<RectTransform>();
         Vector2 scale = new Vector2(rt.transform.localScale.x, 80 * allBeds.beds.Count);

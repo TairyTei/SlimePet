@@ -244,6 +244,7 @@ public class Pet : MonoBehaviour, IObjectFunction
         if (insertIndex == 0 && tasks.Count > 0)
         {
             tasks[0].TaskInterrupt();
+            tasks[0].isStarted = false;
         }
         tasks.Insert(insertIndex, task);
         TasksOtput();

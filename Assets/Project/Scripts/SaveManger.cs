@@ -103,13 +103,13 @@ public class SaveManger
 
         foreach (RoomObject obj in roomObjects)
         {
-            bool isInRoom = PlayerPrefs.GetInt("Is" + obj.nameOfObject + "InRoom") == 1;
+            bool isInRoom = PlayerPrefs.GetInt("Is" + obj.id + "InRoom") == 1;
             if (!isInRoom) continue;
 
             furnitureBox.AddFurnitureToRoom(obj);
 
-            float xPos = PlayerPrefs.GetFloat("XPosOf" + obj.nameOfObject);
-            float yPos = PlayerPrefs.GetFloat("YPosOf" + obj.nameOfObject);
+            float xPos = PlayerPrefs.GetFloat("XPosOf" + obj.id);
+            float yPos = PlayerPrefs.GetFloat("YPosOf" + obj.id);
 
             obj.transform.position = new Vector2(xPos, yPos);
 
@@ -129,8 +129,8 @@ public class SaveManger
             bool isInRoom = furnitureBox.GetObjectsInRoom().ToList().Contains(obj);
             if (isInRoom)
             {
-                PlayerPrefs.SetFloat("XPosOf" + obj.nameOfObject, obj.transform.position.x);
-                PlayerPrefs.SetFloat("YPosOf" + obj.nameOfObject, obj.transform.position.y);
+                PlayerPrefs.SetFloat("XPosOf" + obj.id, obj.transform.position.x);
+                PlayerPrefs.SetFloat("YPosOf" + obj.id, obj.transform.position.y);
             }
         }
     }

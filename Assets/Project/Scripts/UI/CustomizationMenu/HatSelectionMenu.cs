@@ -21,17 +21,18 @@ public class HatSelectionMenu : MonoBehaviour
     private Hat openedHat;
     private int openedHatID;
     private bool isOpenedHatBought;
-    private string PickedText {get{ return ExternalTextLoader.LoadText("Customization/Picked"); }}
-    private string PickText {get{ return ExternalTextLoader.LoadText("Customization/Pick"); }}
-    private string BuyText {get{ return ExternalTextLoader.LoadText("Customization/Buy"); }}
+    private string PickedText { get { return ExternalTextLoader.LoadText("Customization/Picked"); } }
+    private string PickText { get { return ExternalTextLoader.LoadText("Customization/Pick"); } }
+    private string BuyText { get { return ExternalTextLoader.LoadText("Customization/Buy"); } }
     void Start()
     {
         UpdateHatList();
+        SkinManger.instance.OnSkinChanged += DrawSkin;
+        DrawSkin();
     }
-     public void OpenHat(Hat hat)
+    public void OpenHat(Hat hat)
     {
-        SkinManger sm = SkinManger.instance;
-        petImage.sprite = sm.GetSprite(petImage.sprite.name);
+        Debug.Log(hat);
         openedHat = hat;
         openedHatID = allHats.hats.IndexOf(hat);
         if (SkinManger.instance.GetActiveHat() == hat)
@@ -66,11 +67,12 @@ public class HatSelectionMenu : MonoBehaviour
             hatImage.gameObject.SetActive(false);
         }
     }
-      public void UpdateHatList(){
-        foreach(Transform child in hatListParent){
+    public void UpdateHatList()
+    {
+        foreach (Transform child in hatListParent)
+        {
             Destroy(child.gameObject);
         }
-        bool isSomeHatOpened = false;
         for (int i = 0; i < allHats.hats.Count; i++)
         {
             if (!allHats.hats[i].isVisible && PlayerPrefs.GetInt("IsHat" + i + "Bought") != 1)
@@ -78,11 +80,6 @@ public class HatSelectionMenu : MonoBehaviour
             GameObject createdButton = Instantiate(hatButtonPrefab, hatListParent);
             ChooseHatButton button = createdButton.GetComponent<ChooseHatButton>();
             button.Set(this, allHats.hats[i]);
-            if (!isSomeHatOpened)
-            {
-                OpenHat(allHats.hats[i]);
-                isSomeHatOpened = true;
-            }
         }
     }
 
@@ -112,5 +109,10 @@ public class HatSelectionMenu : MonoBehaviour
             OpenHat(openedHat);
             SoundManager.instance.PlaySound(buySound, 0, SoundType.System);
         }
+    }
+    private void DrawSkin()
+    {
+        SkinManger sm = SkinManger.instance;
+        petImage.sprite = sm.GetSprite(petImage.sprite.name);
     }
 }

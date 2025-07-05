@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class VacuumCleaner : RoomObject
@@ -7,11 +8,16 @@ public class VacuumCleaner : RoomObject
     public float checkDelay = 5f;
     public AudioClip suckSound;
     private Transform target;
+    [SerializeField] private RoomObject cleanerStation;
     void Update()
     {
         if (target != null)
         {
             Clean();
+        }
+        else
+        {
+            ReturnToStation();
         }
     }
 
@@ -26,7 +32,7 @@ public class VacuumCleaner : RoomObject
     }
 
     IEnumerator RoomCheck()
-    {        
+    {
         while (true)
         {
             //Debug.Log("StartFind");
@@ -55,4 +61,20 @@ public class VacuumCleaner : RoomObject
             SoundManager.instance.PlaySound(suckSound, 0.3f, SoundType.Main);
         }
     }
+    private void ReturnToStation()
+{
+    bool isThereAStation = FurnitureBox.instance.GetObjectsInRoom().Contains(cleanerStation);
+    if (cleanerStation == null || !isThereAStation) return;
+
+    float distance = Vector2.Distance(transform.position, cleanerStation.transform.position);
+    if (distance > 0.05f)
+    {
+        Vector2 dir = (cleanerStation.transform.position - transform.position).normalized;
+        transform.position = (Vector2)transform.position + (dir * speed * Time.deltaTime);
+    }
+    else
+    {
+        transform.position = cleanerStation.transform.position;
+    }
+}
 }

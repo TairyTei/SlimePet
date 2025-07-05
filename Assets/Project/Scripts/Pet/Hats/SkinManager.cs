@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SkinManger : MonoBehaviour{
@@ -12,6 +13,7 @@ public class SkinManger : MonoBehaviour{
     public SpriteRenderer hatSprite;
     public SpriteRenderer bedSprite;
     public static SkinManger instance;
+    public event Action OnSkinChanged;
     void Start()
     {
         instance = this;
@@ -39,6 +41,8 @@ public class SkinManger : MonoBehaviour{
         else{
             hatSprite.gameObject.SetActive(false);
         }
+        if(OnSkinChanged != null)
+            OnSkinChanged.Invoke();
     }
     public void SetBed(int id){
         PlayerPrefs.SetInt("PickedBedID", id);
@@ -54,6 +58,8 @@ public class SkinManger : MonoBehaviour{
 
         Pet.Instance.Animator.Rebind();
         Pet.Instance.Animator.Update(0f);
+        if(OnSkinChanged != null)
+            OnSkinChanged.Invoke();
     }
     public Sprite GetSprite(string spriteName)
     {

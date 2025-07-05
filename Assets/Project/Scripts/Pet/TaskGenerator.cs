@@ -82,7 +82,7 @@ public class TaskGenerator{
         {
             int randomBall = Random.Range(0, balls.Length - 1);
             Rigidbody2D ball = balls[randomBall].GetComponent<Rigidbody2D>();
-            Task playWithBall = new PlayWithBallTask("Play with " + balls[randomBall].nameOfObject, 15, ball);
+            Task playWithBall = new PlayWithBallTask("Play with " + balls[randomBall].id, 15, ball);
             availableTasks.Add(playWithBall);
         }
 
@@ -102,7 +102,7 @@ public class TaskGenerator{
         RoomObject[] food = FurnitureBox.instance.GetObjectsWithTag("food");
         if(food.Length <= 0) return null;
         int randomFood = Random.Range(0, food.Length-1);
-        Task eatTask = new EatTask("Eat " + food[randomFood].nameOfObject, 15,(FoodObject)food[randomFood], 0.7f);
+        Task eatTask = new EatTask("Eat " + food[randomFood].id, 15,(FoodObject)food[randomFood], 0.7f);
         return eatTask;
     }
 }

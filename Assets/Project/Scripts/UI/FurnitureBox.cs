@@ -72,7 +72,7 @@ public class FurnitureBox : MonoBehaviour
         openedFurnitureID = allFurniture.IndexOf(roomObject);
         isOpenedFurnitureBought = PlayerPrefs.GetInt("IsFurniture" + openedFurnitureID + "Bought") == 1;
 
-        nameOfFurniture.text = roomObject.nameOfObject;
+        nameOfFurniture.text = roomObject.NameOfObject;
         //descriptionOfFurniture.text = roomObject.descriptionOfObject;
         furnitureImage.sprite = roomObject.icon;
         furnitureImage.SetNativeSize();
@@ -82,11 +82,14 @@ public class FurnitureBox : MonoBehaviour
         if (isOpenedFurnitureBought)
         {
             priceOfFurniturePanel.SetActive(false);
-            buttonText.text = isThere ? "Put away" : "Put";
+            string putText = ExternalTextLoader.LoadText("FurnitureBox/Put");
+            string putAwayText = ExternalTextLoader.LoadText("FurnitureBox/PutAway");
+            buttonText.text = isThere ? putAwayText : putText;
         }
         else
         {
-            buttonText.text = "Buy";
+            string buyText = ExternalTextLoader.LoadText("FurnitureBox/Buy");
+            buttonText.text = buyText;
             priceOfFurniture.text = openedFurniture.price + "c";
             priceOfFurniturePanel.SetActive(true);
         } 
@@ -133,13 +136,13 @@ public class FurnitureBox : MonoBehaviour
     public void AddFurnitureToRoom(RoomObject furniture)
     {
         furnitureInRoom.Add(furniture);
-        PlayerPrefs.SetInt("Is" + furniture.nameOfObject + "InRoom", 1);
+        PlayerPrefs.SetInt("Is" + furniture.id + "InRoom", 1);
     }
     public void RemoveFurnitureFromRoom(RoomObject furniture){
         if (furnitureInRoom.Contains(furniture))
         {
             furnitureInRoom.Remove(furniture);
-            PlayerPrefs.SetInt("Is" + furniture.nameOfObject + "InRoom", 0);
+            PlayerPrefs.SetInt("Is" + furniture.id + "InRoom", 0);
         }
     }
     public RoomObject[] GetObjectsInRoom(){
