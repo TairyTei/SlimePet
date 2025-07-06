@@ -15,5 +15,6 @@ MonoBehaviour:
   monologue:
     text: "*\u0421\u0447\u0430\u0441\u0442\u043B\u0438\u0432\u043E \u0431\u0443\u043B\u044C\u043A\u0430\u0435\u0442*"
     textPath: Monologues\Happy/17_GrugglesHappily
+    time: 4
   minValue: 5
   maxValue: 10

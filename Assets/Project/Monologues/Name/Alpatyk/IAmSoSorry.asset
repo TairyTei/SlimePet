@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: I am so sorry.
     textPath: Monologues\Name/Alpatyk/IAmSoSorry
+    time: 3
   requiredName: Alpatyk

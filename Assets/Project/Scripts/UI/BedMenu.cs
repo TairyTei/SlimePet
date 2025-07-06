@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class BedMenu : MonoBehaviour
 {
     public RectTransform menu;
-    [SerializeField] private Animator menuAnimator;
-       [SerializeField] private AudioClip openSound, closeSound;
     public GameObject Options;
     public Vector2 offset = new Vector2(0, 20);
     public bool isOpened;
@@ -36,36 +34,27 @@ public class BedMenu : MonoBehaviour
             Close();
             return;
         }
-        PetMenu.instance.Close();
+	    PetMenu.instance.Close();
 
-        menu.transform.position = (Vector2)Camera.main.WorldToScreenPoint(Bed.instance.transform.position) + offset;
-        Options.SetActive(true);
-        menu.gameObject.SetActive(true);
-        isOpened = true;
-        menuAnimator.SetBool("IsOpened", true);
-         SoundManager.instance.PlaySound(openSound, 0.1f, SoundType.System);
+         menu.transform.position = (Vector2)Camera.main.WorldToScreenPoint(Bed.instance.transform.position) + offset;
+         Options.SetActive(true);
+         menu.gameObject.SetActive(true);
+         isOpened = true;
+         
     }
     public void Close()
     {
         if (!isOpened) return;
-
-        isOpened = false;
-        StartCoroutine(IECloseAnim());
-        SoundManager.instance.PlaySound(closeSound, 0.1f, SoundType.System);
-    }
-    IEnumerator IECloseAnim()
-    {
-        menuAnimator.SetBool("IsOpened", false);
-        yield return new WaitForSeconds(0.25f);
+        
         menu.gameObject.SetActive(false);
+        isOpened = false;
     }
-    public void OpenFurnitureBox()
-    {
+    public void OpenFurnitureBox(){
         FurnitureBox.instance.Open();
         Close();
     }
     public void QuitGame(){
-        SaveManger.Instance.Save();
+        SaveManger.Save();
         Application.Quit();
     }
 }

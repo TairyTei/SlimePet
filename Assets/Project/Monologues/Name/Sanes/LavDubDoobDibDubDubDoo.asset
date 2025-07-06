@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: LAV DUB DOOB DIB DUB DUB DOO!
     textPath: Monologues\Name/Sanes/LavDubDoobDibDubDubDoo
+    time: 3
   requiredName: Sanes

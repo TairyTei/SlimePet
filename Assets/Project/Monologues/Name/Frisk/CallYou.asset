@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: '*Call you*'
     textPath: Monologues\Name/Frisk/CallYou
+    time: 3
   requiredName: Frisk

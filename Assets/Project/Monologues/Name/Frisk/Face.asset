@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: -_-
     textPath: Monologues\Name/Frisk/Face
+    time: 3
   requiredName: Frisk

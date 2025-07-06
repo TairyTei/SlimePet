@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: Hope you feel good today, brada.
     textPath: Monologues\Name/Alpatyk/HopeYouFeelGoodTodayBrada
+    time: 3
   requiredName: Alpatyk

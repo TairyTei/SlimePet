@@ -16,5 +16,6 @@ MonoBehaviour:
     text: "\u041C\u0443\u0447\u0430\u0442\u044C \u0441\u043B\u0430\u0439\u043C\u0430
       \u043E\u0447\u0435\u043D\u044C \u043F\u043B\u043E\u0445\u043E!"
     textPath: Monologues\Sad/12_TroutingASlimeIsVeryBad
+    time: 4
   minValue: -1
   maxValue: 2.49

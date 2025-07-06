@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u041C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C\u2026"
     textPath: Monologues\Name/Tei/ItIsPossible
+    time: 3
   requiredName: Tei

@@ -15,7 +15,7 @@ public class GoGetAStoryTask : Task
     }
     public override void TaskStart()
     {
-        Bed.instance.ActivateStoryMark(true);
+
         do
         {
             targetPos = new Vector2(Random.Range(-50, 50), Random.Range(-50, 50));
@@ -50,7 +50,6 @@ public class GoGetAStoryTask : Task
             PlayerPrefs.SetInt("StoriesInQueue", Pet.Instance.Stats.StoriesQueue);
             StoriesWindow.Instance.UnlockRandomStory();
         }
-        Bed.instance.ActivateStoryMark(false);
     }
     public override void TaskFail()
     {

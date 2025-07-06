@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u0422\u044B \u043A\u0430\u043A, \u043F\u0440\u0438\u044F\u0442\u0435\u043B\u044C?"
     textPath: Monologues\Name/Owner/HowAreYou
+    time: 3
   requiredName: Dodger

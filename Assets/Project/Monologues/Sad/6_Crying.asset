@@ -15,5 +15,6 @@ MonoBehaviour:
   monologue:
     text: "*\u041F\u043B\u0430\u0447\u0435\u0442*"
     textPath: Monologues\Sad/6_Crying
+    time: 4
   minValue: -1
   maxValue: 2.49

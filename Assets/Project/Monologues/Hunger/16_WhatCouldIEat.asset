@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u0427\u0442\u043E \u0431\u044B \u043C\u043D\u0435 \u0441\u044A\u0435\u0441\u0442\u044C\u2026"
     textPath: Monologues\Hunger/16_WhatCouldIEat
+    time: 4

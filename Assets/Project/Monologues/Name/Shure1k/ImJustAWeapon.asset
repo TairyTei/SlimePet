@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: O O
     textPath: Monologues\Name/Shure1k/ImJustAWeapon
+    time: 3
   requiredName: Shure-1k

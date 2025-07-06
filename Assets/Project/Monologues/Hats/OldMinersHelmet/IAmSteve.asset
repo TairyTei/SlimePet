@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u042F \u2013 $pet_name!"
     textPath: Monologues\Hats/OldMinersHelmet/IAmSteve
+    time: 3

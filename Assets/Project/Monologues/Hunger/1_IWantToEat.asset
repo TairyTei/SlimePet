@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u042F \u0445\u043E\u0447\u0443 \u0435\u0441\u0442\u044C!"
     textPath: Monologues\Hunger/1_IWantToEat
+    time: 4

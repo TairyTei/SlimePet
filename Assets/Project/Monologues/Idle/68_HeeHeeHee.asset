@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u0425\u0438-\u0445\u0438-\u0445\u0438."
     textPath: Monologues\Idle/68_HeeHeeHee
+    time: 4

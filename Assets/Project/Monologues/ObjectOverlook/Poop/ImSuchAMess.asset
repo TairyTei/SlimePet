@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u042F \u0442\u0430\u043A\u043E\u0439 \u0433\u0440\u044F\u0437\u043D\u0443\u043B\u044F\u2026"
     textPath: Monologues\ObjectOverlook/Poop/ImSuchAMess
+    time: 3

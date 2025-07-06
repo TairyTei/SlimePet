@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: "*\u0412 \u0434\u0435\u043F\u0440\u0435\u0441\u0441\u0438\u0438*"
     textPath: Monologues\Name/Jap/Depressed
+    time: 3
   requiredName: "\u0416\u0430\u0431\u0430"

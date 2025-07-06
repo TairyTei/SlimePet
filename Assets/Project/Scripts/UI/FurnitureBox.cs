@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FurnitureBox : MonoBehaviour, IInitializable
+public class FurnitureBox : MonoBehaviour
 {
     public GameObject menu;
     public TextMeshProUGUI nameOfFurniture;
@@ -33,7 +33,7 @@ public class FurnitureBox : MonoBehaviour, IInitializable
     private bool isOpened = false;
     public static FurnitureBox instance;
 
-    public void Initialize()
+    void Start()
     {
         instance = this;
     }

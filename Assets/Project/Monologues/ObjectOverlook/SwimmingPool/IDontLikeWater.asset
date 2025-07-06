@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u041D\u0435 \u043B\u044E\u0431\u043B\u044E \u0432\u043E\u0434\u0438\u0447\u043A\u0443!"
     textPath: Monologues\ObjectOverlook/SwimmingPool/IDontLikeWater
+    time: 3

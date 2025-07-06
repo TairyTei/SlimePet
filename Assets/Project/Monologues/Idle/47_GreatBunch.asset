@@ -16,3 +16,4 @@ MonoBehaviour:
     text: "\u0425\u043E\u0437\u044F\u0438\u043D \u0438 $pet_name \u2013 \u043E\u0442\u043B\u0438\u0447\u043D\u0430\u044F
       \u043A\u043E\u043C\u043F\u0430\u0448\u043A\u0430"
     textPath: Monologues\Idle/47_GreatBunch
+    time: 4

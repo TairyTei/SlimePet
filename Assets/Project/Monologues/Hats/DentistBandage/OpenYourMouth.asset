@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u041E\u0442\u043A\u0440\u043E\u0439 \u043A\u0430 \u0440\u043E\u0442\u0438\u043A!"
     textPath: Monologues\Hats/DentistBandage/OpenYourMouth
+    time: 3

@@ -6,28 +6,21 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class SettingsMenu : MonoBehaviour, IInitializable
+public class SettingsMenu : MonoBehaviour
 {
-    private int[] availableFramerate = { -1, 120, 60, 30 };
     public GameObject menu;
     public TMP_Dropdown languageChoise;
-    public TMP_Dropdown framerateChoise;
     public Toggle launchWithWindows;
     public Toggle petCatchesCursor;
     public Slider musicVolume, mainVolume, systemVolume;
-    public event Action OnSettingsUpdated;
     [SerializeField] private MusicPlayer musicPlayer;
     public GameObject[] tabs;
 
-    public static SettingsMenu Instance { get; private set; }
-
-    public void Initialize()
+    void Awake()
     {
-        Instance = this;
-        LoadSettings();
-        DrawLanguageDropdown();
+        LocalizationSystem.OnLanguagesScanned += DrawLanguageDropdown;
     }
-    private void LoadSettings()
+    private void UpdateSettings()
     {
         Settings settings = SettingsManager.insntace.Settings;
         petCatchesCursor.isOn = PlayerPrefs.GetInt("DoesPetCatchCursor") == 1 ? true : false;
@@ -35,8 +28,6 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         musicVolume.value = settings.musicVolume;
         mainVolume.value = settings.mainVolume;
         systemVolume.value = settings.systemVolume;
-        framerateChoise.value = Array.IndexOf(availableFramerate, settings.frameRate);
-        launchWithWindows.isOn = AutoStartManager.IsAutoStartEnabled();
     }
     public void ApplySettings()
     {
@@ -45,12 +36,12 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         //sound settings
         settings.musicVolume = musicVolume.value;
         PlayerPrefs.SetFloat("MusicVolume", settings.musicVolume);
+        musicPlayer.SetVolume(settings.musicVolume);
         settings.mainVolume = mainVolume.value;
         PlayerPrefs.SetFloat("MainVolume", settings.mainVolume);
         settings.systemVolume = systemVolume.value;
         PlayerPrefs.SetFloat("SystemVolume", settings.systemVolume);
-
-        OnSettingsUpdated.Invoke();
+        
         SettingsManager.insntace.UpdateSettings();
     }
     public void OpenTab(int tabIndex)
@@ -80,32 +71,14 @@ public class SettingsMenu : MonoBehaviour, IInitializable
     {
         OpenTab(0);
         BedMenu.instance.Close();
+        UpdateSettings();
         menu.SetActive(true);
+        DrawLanguageDropdown();
     }
     public void Close()
     {
         menu.SetActive(false);
         ApplySettings();
-    }
-
-    public void ChangeTargetFramerate()
-    {
-
-        int frameRate = -1;
-        if (availableFramerate.Length > framerateChoise.value)
-        {
-            frameRate = availableFramerate[framerateChoise.value];
-        }
-        SettingsManager.insntace.SetFrameRate(frameRate);
-
-    }
-    public void SetAutostart()
-    {
-        AutoStartManager.SetAutoStart(launchWithWindows.isOn);
-    }
-    public void DoesPetCatchCursor()
-    {
-        PlayerPrefs.SetInt("DoesPetCatchCursor", petCatchesCursor.isOn ? 1 : 0);
     }
     public void DrawLanguageDropdown()
     {
@@ -124,5 +97,9 @@ public class SettingsMenu : MonoBehaviour, IInitializable
     {
         string langID = LocalizationSystem.GetAvailableLanguages()[languageChoise.value].id;
         LocalizationSystem.SetLanguage(langID);
+    }
+    public void DoesPetCatchCursor()
+    {
+        PlayerPrefs.SetInt("DoesPetCatchCursor", petCatchesCursor.isOn ? 1 : 0);
     }
 }

@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u0421\u0412\u041E\u0411\u041E\u0414\u0423 \u041F\u041E\u041F\u0423\u0413\u0410\u042F\u041C!"
     textPath: Monologues\Name/Kesha/FreedomForParrots
+    time: 3
   requiredName: "\u041A\u0435\u0448\u0430"

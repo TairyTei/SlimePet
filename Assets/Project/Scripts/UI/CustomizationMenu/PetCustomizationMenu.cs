@@ -64,20 +64,10 @@ public class PetCustomizationMenu : MonoBehaviour
         
         }
     }
-    private void DrawSkins()
-    {
+    private void DrawSkins(){
         SkinManger sm = SkinManger.instance;
         petImage.sprite = sm.GetSprite(petImage.sprite.name);
-        Sprite hatSprite = sm.allHats.hats[sm.ActiveHatID].hatSprite;
-        if (hatSprite != null)
-        {
-            hatImage.sprite = hatSprite;
-            ImageSpriteResizer.Resize(hatImage);
-            hatImage.gameObject.SetActive(true);
-        }
-        else
-        {
-            hatImage.gameObject.SetActive(false);
-        }
+        hatImage.sprite = sm.allHats.hats[sm.ActiveHatID].hatSprite;
+        ImageSpriteResizer.Resize(hatImage);
     }
 }

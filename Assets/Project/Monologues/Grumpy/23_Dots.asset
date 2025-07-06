@@ -15,5 +15,6 @@ MonoBehaviour:
   monologue:
     text: "\u2026"
     textPath: Monologues\Grumpy/23_Dots
+    time: 4
   minValue: 2.5
   maxValue: 4.99

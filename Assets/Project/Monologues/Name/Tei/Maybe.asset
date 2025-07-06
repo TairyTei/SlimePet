@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: "Tei: \r\n"
     textPath: Monologues\Name/Tei/Maybe
+    time: 3
   requiredName: Tei

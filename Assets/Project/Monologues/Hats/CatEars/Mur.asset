@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u041C\u0443\u0440!"
     textPath: Monologues\Hats/CatEars/Mur
+    time: 3

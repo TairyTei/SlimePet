@@ -16,3 +16,4 @@ MonoBehaviour:
     text: "\u042F \u0442\u043E\u0447\u043D\u043E \u043D\u0435 $pet_name, \u043F\u043E\u043A\u043E\u0440\u043C\u0438
       \u043C\u0435\u043D\u044F, \u0434\u0440\u0443\u0436\u043E\u043A!"
     textPath: Monologues\Hats/Disguse/IAmNot
+    time: 3

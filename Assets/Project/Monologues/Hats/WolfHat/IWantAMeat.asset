@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u0410\u0443\u0444, \u0445\u043E\u0447\u0443 \u043C\u044F\u0441\u0430!"
     textPath: Monologues\Hats/WolfHat/IWantAMeat
+    time: 4

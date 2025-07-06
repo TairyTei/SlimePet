@@ -15,5 +15,6 @@ MonoBehaviour:
   monologue:
     text: "*\u041D\u0435\u0434\u043E\u0432\u043E\u043B\u0435\u043D \u0436\u0438\u0437\u043D\u044C\u044E*"
     textPath: Monologues\Sad/16_DissatisfiedWithLife
+    time: 4
   minValue: -1
   maxValue: 2.49

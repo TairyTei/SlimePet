@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u041F\u0438\u043D\u0430\u043B \u0431\u044B \u0438 \u043F\u0438\u043D\u0430\u043B!"
     textPath: Monologues\ObjectOverlook/SoccerBall/IdKickItAndKickIt
+    time: 3

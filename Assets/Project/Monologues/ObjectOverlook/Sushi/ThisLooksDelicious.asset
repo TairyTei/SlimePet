@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u0412\u044B\u0433\u043B\u044F\u0434\u0438\u0442 \u0432\u043A\u0443\u0441\u043D\u043E."
     textPath: Monologues\ObjectOverlook/Sushi/ThisLooksDelicious
+    time: 3

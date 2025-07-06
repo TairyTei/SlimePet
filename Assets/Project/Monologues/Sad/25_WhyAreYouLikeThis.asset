@@ -15,5 +15,6 @@ MonoBehaviour:
   monologue:
     text: "\u0417\u0430\u0447\u0435\u043C \u0442\u044B \u0442\u0430\u043A\u2026"
     textPath: Monologues\Sad/25_WhyAreYouLikeThis
+    time: 4
   minValue: -1
   maxValue: 2.49

@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: Dodger will be realeased in January
     textPath: Monologues\Name/Tei/Dodger
+    time: 3
   requiredName: Tei

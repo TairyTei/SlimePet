@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: May i stand by your side?
     textPath: Monologues\Name/Alpatyk/MayIStandByYourSide
+    time: 3
   requiredName: Alpatyk

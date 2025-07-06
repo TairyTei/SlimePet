@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u042F \u0442\u0443\u0442 \u043F\u043E\u0441\u0438\u0436\u0443?"
     textPath: Monologues\Idle/85_CanISitHere
+    time: 4

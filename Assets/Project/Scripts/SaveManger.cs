@@ -1,33 +1,25 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SaveManger : MonoBehaviour, IInitializable
+public class SaveManger
 {
-    [SerializeField] private float autosaveRate;
-    public static SaveManger Instance { get; private set; }
-    private static bool isItirstLaunch = true;
-    public static bool IsItFirstLaunch { get { return isItirstLaunch; } }
-
-    public void Initialize()
+    private static SaveManger instance;
+    public static SaveManger Instance
     {
-        Instance = this;
-        Load();
-        StartCoroutine(Autosave());
-    }
-
-    private IEnumerator Autosave()
-    {
-        while (true)
+        get
         {
-            yield return new WaitForSeconds(autosaveRate);
-            Save();
+            if (instance == null)
+            {
+                instance = new SaveManger();
+            }
+            return instance;
         }
     }
-
-     public void Save()
+    private static bool isItirstLaunch = true;
+    public static bool IsItFirstLaunch { get { return isItirstLaunch; } }
+     public static void Save()
     {
         Pet pet = Pet.Instance;
         PetStats stats = pet.Stats;
@@ -56,10 +48,10 @@ public class SaveManger : MonoBehaviour, IInitializable
         SaveFurniture();
         Debug.Log("Game saved");
     }
-    public void Load()
+    public static void Load()
     {
         Pet pet = Pet.Instance;
-        PetStats petStats = pet.Stats;
+        PetStats stats = pet.Stats;
 
         isItirstLaunch = PlayerPrefs.GetInt("LaunchedEarlier") == 1 ? false : true;
 
@@ -80,15 +72,15 @@ public class SaveManger : MonoBehaviour, IInitializable
         int createDay = PlayerPrefs.GetInt("CreateDay");
         pet.CreateDate = new DateTime(createYear, createMonth, createDay);
 
-        petStats.Coins = PlayerPrefs.GetInt("Coins");
-        petStats.Satiety = PlayerPrefs.GetFloat("Satiety");
-        petStats.Cleanliness = PlayerPrefs.GetFloat("Cleanlines");
-        petStats.Love = PlayerPrefs.GetFloat("Love");
-        petStats.Boredom = PlayerPrefs.GetFloat("Boredom");
-        petStats.Cheerfulness = PlayerPrefs.GetFloat("Cheerfulness");
-        petStats.Happiness = PlayerPrefs.GetFloat("Happiness");
-        petStats.Expirience = PlayerPrefs.GetInt("Expirience");
-        petStats.StoriesQueue = PlayerPrefs.GetInt("StoriesInQueue");
+        stats.Coins = PlayerPrefs.GetInt("Coins");
+        stats.Satiety = PlayerPrefs.GetFloat("Satiety");
+        stats.Cleanliness = PlayerPrefs.GetFloat("Cleanlines");
+        stats.Love = PlayerPrefs.GetFloat("Love");
+        stats.Boredom = PlayerPrefs.GetFloat("Boredom");
+        stats.Cheerfulness = PlayerPrefs.GetFloat("Cheerfulness");
+        stats.Happiness = PlayerPrefs.GetFloat("Happiness");
+        stats.Expirience = PlayerPrefs.GetInt("Expirience");
+        stats.StoriesQueue = PlayerPrefs.GetInt("StoriesInQueue");
         
         System.DateTime now = System.DateTime.Now;
 
@@ -104,7 +96,7 @@ public class SaveManger : MonoBehaviour, IInitializable
 
         Debug.Log("С последнего сохранения прошло " + difference + " минут");
     }
-    private void LoadFurniture()
+    private static void LoadFurniture()
     {
         FurnitureBox furnitureBox = FurnitureBox.instance;
         List<RoomObject> roomObjects = furnitureBox.AllFurniture;
@@ -126,8 +118,9 @@ public class SaveManger : MonoBehaviour, IInitializable
             
         }
     }
-    private void SaveFurniture()
+    private static void SaveFurniture()
     {
+         
         FurnitureBox furnitureBox = FurnitureBox.instance;
         List<RoomObject> roomObjects = furnitureBox.AllFurniture;
 
@@ -141,7 +134,6 @@ public class SaveManger : MonoBehaviour, IInitializable
             }
         }
     }
-    
     private static void FirstLaunch()
     {
         Pet pet = Pet.Instance;

@@ -15,3 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u041C\u043E\u044F \u043B\u0435\u0436\u0430\u043D\u043A\u0430!"
     textPath: Monologues\Hats/Homeless/MyBed
+    time: 3

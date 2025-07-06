@@ -15,4 +15,5 @@ MonoBehaviour:
   monologue:
     text: Blob-blob-blob, I'm your little pal!
     textPath: Monologues\Name/SillyMike/ImYourLittlePal
+    time: 3
   requiredName: Silly Mike

@@ -16,5 +16,6 @@ MonoBehaviour:
     text: "\u0422\u044B \u0442\u0449\u0430\u0442\u0435\u043B\u044C\u043D\u043E \u043C\u0435\u043D\u044F
       \u043C\u043E\u0435\u0448\u044C?"
     textPath: Monologues\Grumpy/20_AreYouWashingMe
+    time: 4
   minValue: 2.5
   maxValue: 4.99
