@@ -11,5 +11,5 @@ public class Settings
     public float mainVolume = 1f;
     [Range(0f,1f)]
     public float systemVolume = 1f;
-    public int display = 0;
+    public int frameRate = -1;
 }

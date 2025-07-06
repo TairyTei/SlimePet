@@ -15,6 +15,5 @@ MonoBehaviour:
   monologue:
     text: "*\u0416\u0434\u0451\u0442 \u043B\u044E\u0431\u0432\u0438*"
     textPath: Monologues\Sad/20_WaitingForLove
-    time: 4
   minValue: -1
   maxValue: 2.49

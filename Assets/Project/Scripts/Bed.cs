@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class Bed : RoomObject, IObjectFunction {
+public class Bed : RoomObject, IObjectFunction
+{
 
-    public static Bed instance;
+    [SerializeField] private GameObject storyMark;
+    public static Bed instance { get; private set; }
 
     void Awake()
     {
@@ -22,5 +24,9 @@ public class Bed : RoomObject, IObjectFunction {
         {
             BedMenu.instance.Close();
         }
+    }
+    public void ActivateStoryMark(bool isActive)
+    {
+        storyMark.SetActive(isActive);
     }
 }

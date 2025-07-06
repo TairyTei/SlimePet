@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: :>
     textPath: Monologues\Idle/23_UglyFace
-    time: 4

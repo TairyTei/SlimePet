@@ -15,6 +15,5 @@ MonoBehaviour:
   monologue:
     text: "*\u0423\u043B\u044B\u0431\u0430\u0435\u0442\u0441\u044F*"
     textPath: Monologues\Happy/16_Smiles
-    time: 4
   minValue: 5
   maxValue: 10

@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: "\u041F\u043E\u043A\u043E\u0440\u043C\u0438 \u043C\u0435\u043D\u044F, \u0445\u043E\u0437\u044F\u0438\u043D!"
     textPath: Monologues\Hunger/20_FeedMeOwner
-    time: 4

@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: Blob-blob-blob, I'm amazing as well!
     textPath: Monologues\Name/SillyMike/ImAmazingAsWell
-    time: 3
   requiredName: Silly Mike

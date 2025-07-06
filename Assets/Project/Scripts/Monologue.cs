@@ -7,12 +7,11 @@ public class Monologue
     public string text;
     public string textPath;
     public string Text { get; private set; }
-    public float time;
+    public const float time = 3;
 
-    public Monologue(string text, float time)
+    public Monologue(string text)
     {
         this.text = text;
-        this.time = time;
     }
     [ContextMenu("UpdateTextVariable")]
     public void UpdateVar()

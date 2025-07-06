@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsManager : MonoBehaviour
+public class SettingsManager : MonoBehaviour, IInitializable
 {
     [SerializeField]
     private Settings settings;
     public Settings Settings {get{return settings;} set{settings = value;}}
     public static SettingsManager insntace;
-    void Awake()
+    public void Initialize()
     {
         insntace = this;
         LoadSettings();
@@ -18,25 +18,21 @@ public class SettingsManager : MonoBehaviour
         settings.musicVolume = PlayerPrefs.GetFloat("MusicVolume");
         settings.mainVolume = PlayerPrefs.GetFloat("MainVolume");
         settings.systemVolume = PlayerPrefs.GetFloat("SystemVolume");
+        settings.frameRate = PlayerPrefs.GetInt("TargetFrameRate");
+        Application.targetFrameRate = settings.frameRate;
     }
     void Start()
     {
         
     }
-    public void UpdateSettings(){
-        
-    }
-
-    public void SetDisplay(int index)
+    public void SetFrameRate(int frameRate)
     {
-        if (index >= 0 && index < Display.displays.Length)
-        {
-            settings.display = index;
-            UpdateSettings();
-        }
-        else
-        {
-            Debug.LogError("Недопустимый индекс дисплея");
-        }
+        PlayerPrefs.SetInt("TargetFrameRate", frameRate);
+        settings.frameRate = frameRate;
+        Application.targetFrameRate = frameRate;
+    }
+    public void UpdateSettings()
+    {
+
     }
 }

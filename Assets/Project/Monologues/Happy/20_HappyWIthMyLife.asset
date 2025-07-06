@@ -16,6 +16,5 @@ MonoBehaviour:
     text: "*\u0414\u043E\u0432\u043E\u043B\u0435\u043D \u0441\u0432\u043E\u0435\u0439
       \u0436\u0438\u0437\u043D\u044C\u044E*"
     textPath: Monologues\Happy/20_HappyWIthMyLife
-    time: 4
   minValue: 5
   maxValue: 10

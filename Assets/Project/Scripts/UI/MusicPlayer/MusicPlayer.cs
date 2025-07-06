@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MusicPlayer : MonoBehaviour
+public class MusicPlayer : MonoBehaviour, IInitializable
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private TextMeshProUGUI title;
@@ -20,6 +20,14 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] private Animator radioAnimator;
     private bool isPause = false;
     private bool isOpened = false;
+
+    public void Initialize()
+    {
+        SettingsMenu.Instance.OnSettingsUpdated += OnSettingsUpdated;
+    }
+    private void OnSettingsUpdated() {
+        source.volume = SettingsManager.insntace.Settings.musicVolume;
+    }
     void Start()
     {
         DrawTrackList();

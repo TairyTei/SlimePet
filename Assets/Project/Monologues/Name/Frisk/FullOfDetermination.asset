@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: '*Full of Determination*'
     textPath: Monologues\Name/Frisk/FullOfDetermination
-    time: 3
   requiredName: Frisk

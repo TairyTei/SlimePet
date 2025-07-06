@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: "What\u2019s up, du-ude!"
     textPath: Monologues\Name/SillyMike/WhatsUpDuude
-    time: 3
   requiredName: Silly Mike

@@ -15,6 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u041E\u0442\u043F\u0443\u0441\u0442\u0438 \u043C\u0435\u043D\u044F."
     textPath: Monologues\Sad/4_LetMeGo
-    time: 4
   minValue: -1
   maxValue: 2.49

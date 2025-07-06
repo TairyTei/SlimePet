@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: DO U WANT A BAD TOOOOOOOOOM????? HUH??????
     textPath: Monologues\Name/Sanes/DoUWantABadTooom
-    time: 3
   requiredName: Sanes

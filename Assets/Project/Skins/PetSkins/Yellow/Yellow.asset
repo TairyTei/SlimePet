@@ -64,3 +64,7 @@ MonoBehaviour:
   - {fileID: 1428562155691957951, guid: 662a8138cd4f3744bbdf9708a68ac08a, type: 3}
   - {fileID: -2297124831378809711, guid: 662a8138cd4f3744bbdf9708a68ac08a, type: 3}
   - {fileID: 5370985062941958827, guid: 662a8138cd4f3744bbdf9708a68ac08a, type: 3}
+  monologues:
+  - {fileID: 11400000, guid: 23ea8b7eb2009eb45ab56b3eee1af03a, type: 2}
+  - {fileID: 11400000, guid: 692661d5e610d3345a3d598514f672d4, type: 2}
+  - {fileID: 11400000, guid: 78f9c2ef7a4e00d4b9a525ee0a5a0523, type: 2}

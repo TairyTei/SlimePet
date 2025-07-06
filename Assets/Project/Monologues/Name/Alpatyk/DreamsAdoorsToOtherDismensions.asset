@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: "Dreams - a doors to other dimensions\u2026"
     textPath: Monologues\Name/Alpatyk/DreamsAdoorsToOtherDismensions
-    time: 3
   requiredName: Alpatyk

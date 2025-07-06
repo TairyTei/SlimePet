@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: "\u0411\u0443\u043B\u044C\u043A-\u0431\u0443\u043B\u044C\u043A"
     textPath: Monologues\Idle/03_Bulk
-    time: 4

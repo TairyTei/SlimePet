@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u041C\u0443\u0440-\u043C\u044F\u0443."
     textPath: Monologues\Name/SillySlime/MourMeow
-    time: 3
   requiredName: "\u0414\u0443\u0440\u0430\u0448\u043A\u0430 \u0441\u043B\u0430\u0439\u043C"

@@ -11,8 +11,9 @@ public class ComeUpAndSay : DynamicTargetTask
 
     public override void TaskEnd()
     {
+        base.TaskEnd();
         MonologueWindow.instance.CreateMonologue(monologue);
-        Pet.Instance.Break(monologue.time);
+        Pet.Instance.Break(Monologue.time);
     }
    
 }

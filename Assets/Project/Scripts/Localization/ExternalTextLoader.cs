@@ -7,7 +7,7 @@ public static class ExternalTextLoader
     {
         string currLang = LocalizationSystem.CurrentLanguage.id;
         string fullPath = Path.Combine(Application.streamingAssetsPath, "Localization", currLang, relativePath + ".txt");
-        Debug.Log(fullPath);
+        //Debug.Log(fullPath);
         if (!File.Exists(fullPath))
         {
             Debug.LogWarning($"Text file not found: {fullPath}");

@@ -15,6 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u0421\u043F\u0430\u0441\u0438\u0431\u043E \u0437\u0430 \u0432\u0441\u0451."
     textPath: Monologues\Happy/25_ThanksForAll
-    time: 4
   minValue: 5
   maxValue: 10
