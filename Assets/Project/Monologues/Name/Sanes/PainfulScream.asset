@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: '*Painful scream*'
     textPath: Monologues\Name/Sanes/PainfulScream
-    time: 3
   requiredName: Sanes

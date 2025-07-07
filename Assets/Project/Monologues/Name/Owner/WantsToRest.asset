@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: "*\u0425\u043E\u0447\u0435\u0442 \u043E\u0442\u0434\u043E\u0445\u043D\u0443\u0442\u044C*"
     textPath: Monologues\Name/Owner/WantsToRest
-    time: 3
   requiredName: Dodger

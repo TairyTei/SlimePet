@@ -15,6 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u0422\u044B \u0442\u043E\u0447\u043D\u043E \u043C\u0435\u043D\u044F \u043B\u044E\u0431\u0438\u0448\u044C?"
     textPath: Monologues\Grumpy/2_AreYouSureLoveMe
-    time: 4
   minValue: 2.5
   maxValue: 4.99

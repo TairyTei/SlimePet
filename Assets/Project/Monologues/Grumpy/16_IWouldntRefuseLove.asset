@@ -16,6 +16,5 @@ MonoBehaviour:
     text: "\u042F \u0431\u044B \u043D\u0435 \u043E\u0442\u043A\u0430\u0437\u0430\u043B\u0441\u044F
       \u043E\u0442 \u043B\u044E\u0431\u0432\u0438\u2026"
     textPath: Monologues\Grumpy/16_IWouldntRefuseLove
-    time: 4
   minValue: 2.5
   maxValue: 4.99

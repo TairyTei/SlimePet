@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: O O
     textPath: Monologues\Name/Dodger/face03
-    time: 3
   requiredName: Dodger

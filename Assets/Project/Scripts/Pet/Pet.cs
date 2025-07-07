@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Pet : MonoBehaviour, IObjectFunction
+public class Pet : MonoBehaviour, IObjectFunction, IInitializable
 {
     
     public string petName = "dumb slime";
@@ -54,20 +54,14 @@ public class Pet : MonoBehaviour, IObjectFunction
 
     public static Pet Instance { get; private set; }
 
-    public const float middleTick = 15;
-    public const float largeTick = 1800;
-    void Awake()
+
+    public void Initialize()
     {
         Instance = this;
+        TickController.Instance.OnSmallTick += OnSmallTick;
+        TickController.Instance.OnLargeTick += OnLargeTick;
     }
 
-    private void Start()
-    {
-        SaveManger.Load();
-        StartCoroutine(Autosave());
-        StartCoroutine(PetSmallTick());
-        StartCoroutine(PetLargeTick());
-    }
     private void Update()
     {
         if (Time.time > breakUntil && idleRequests.Count <= 0)
@@ -80,12 +74,21 @@ public class Pet : MonoBehaviour, IObjectFunction
             }
         }
     }
-    private IEnumerator PetSmallTick()
+    
+    public void RMB_Click()
     {
-        while (true)
+        if (tasks.Count == 0 || tasks[0].taskName.ToLower() != "sleep")
         {
-            yield return new WaitForSeconds(middleTick / Time.timeScale);
-            if (tasks.Count == 0 || GetActiveTask().taskName != "Sleep")
+                PetMenu.instance.Open();
+        }
+        else
+        {
+            BedMenu.instance.Open();
+        }
+    }
+    private void OnSmallTick()
+    {
+        if (tasks.Count == 0 || GetActiveTask().taskName != "Sleep")
             {
                 Stats.Satiety -= 0.25f;
                 Stats.Cleanliness -= 0.1f;
@@ -115,14 +118,10 @@ public class Pet : MonoBehaviour, IObjectFunction
             {
                 pm.PoopSmell.Stop();
             }
-        }
     }
-    private IEnumerator PetLargeTick()
+    private void OnLargeTick()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(largeTick / Time.timeScale);
-            if (Stats.Satiety <= 0.5f && Stats.Cleanliness <= 0.5f && Stats.Love <= 0.5f && Stats.Boredom <= 5)
+        if (Stats.Satiety <= 0.5f && Stats.Cleanliness <= 0.5f && Stats.Love <= 0.5f && Stats.Boredom <= 5)
             {
                 Stats.Happiness = Stats.Happiness - 0.25f;
             }
@@ -140,27 +139,6 @@ public class Pet : MonoBehaviour, IObjectFunction
                     AddTask(storyTask);
                 }
             }
-        }
-        
-    }
-    public void RMB_Click()
-    {
-        if (tasks.Count == 0 || tasks[0].taskName.ToLower() != "sleep")
-        {
-                PetMenu.instance.Open();
-        }
-        else
-        {
-            BedMenu.instance.Open();
-        }
-    }
-    private IEnumerator Autosave()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(30f);
-            SaveManger.Save();
-        }
     }
     private IEnumerator PooC()
     {
@@ -193,7 +171,7 @@ public class Pet : MonoBehaviour, IObjectFunction
             tasks[0].TaskEnd();
             RemoveTask(tasks[0]);
             //Break(Random.Range(1,10));
-            SaySomething();
+            TryToSay();
             return;
         }
         if (!tasks[0].isStarted)
@@ -203,21 +181,12 @@ public class Pet : MonoBehaviour, IObjectFunction
         }
         tasks[0].Actions();
     }
-    private void SaySomething()
+    private void TryToSay()
     {
         int rand = Random.Range(0, 100);
         if (rand <= 5)
         {
-            rand = Random.Range(0, 100);
-            switch (rand)
-            {
-                case int n when (n <= 5):
-                    MonologueWindow.instance.RandomHatMonologue();
-                    break;
-                default:
-                    MonologueWindow.instance.RandomIdleMonologue();
-                    break;
-            }
+            MonologueWindow.instance.SaySomething();
         }
     }
 

@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: "\u041F\u0440\u0438\u0432\u0435\u0442, \u043C\u0438\u0440!"
     textPath: Monologues\Idle/77_HelloWorld
-    time: 4

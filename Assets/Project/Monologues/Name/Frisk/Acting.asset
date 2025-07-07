@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: '*Acting*'
     textPath: Monologues\Name/Frisk/Acting
-    time: 3
   requiredName: Frisk

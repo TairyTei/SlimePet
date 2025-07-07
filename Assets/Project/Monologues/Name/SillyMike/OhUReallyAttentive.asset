@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: Oh, u really attentive!
     textPath: Monologues\Name/SillyMike/OhUReallyAttentive
-    time: 3
   requiredName: Silly Mike

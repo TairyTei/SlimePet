@@ -16,6 +16,5 @@ MonoBehaviour:
     text: "\u042F \u0431\u044B \u0445\u043E\u0442\u0435\u043B \u0431\u043E\u043B\u044C\u0448\u0435
       \u0432\u043D\u0438\u043C\u0430\u043D\u0438\u044F\u2026"
     textPath: Monologues\Grumpy/3_IWouldLikeMoreAttention
-    time: 4
   minValue: 2.5
   maxValue: 4.99

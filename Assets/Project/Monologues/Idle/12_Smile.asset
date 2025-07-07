@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: ^-^
     textPath: Monologues\Idle/12_Smile
-    time: 4

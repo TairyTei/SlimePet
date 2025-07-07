@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: "\u042F \u043B\u044E\u0431\u043B\u044E \u0441\u0432\u043E\u044E \u043A\u0440\u043E\u0432\u0430\u0442\u043A\u0443!"
     textPath: Monologues\ObjectOverlook/Bed/ILoveMyBed
-    time: 3

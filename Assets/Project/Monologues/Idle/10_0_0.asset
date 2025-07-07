@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: 0-0
     textPath: Monologues\Idle/10_0_0
-    time: 4

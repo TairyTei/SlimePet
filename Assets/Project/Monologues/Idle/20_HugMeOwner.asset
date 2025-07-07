@@ -15,4 +15,3 @@ MonoBehaviour:
   monologue:
     text: "\u041E\u0431\u043D\u0438\u043C\u0438 \u043C\u0435\u043D\u044F, \u0445\u043E\u0437\u044F\u0438\u043D!"
     textPath: Monologues\Idle/20_HugMeOwner
-    time: 4

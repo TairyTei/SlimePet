@@ -16,6 +16,5 @@ MonoBehaviour:
     text: "$pet_name \u2013 \u0441\u0430\u043C\u044B\u0439 \u0441\u0447\u0430\u0441\u0442\u043B\u0438\u0432\u044B\u0439
       \u0441\u043B\u0430\u0439\u043C \u0432 \u043C\u0438\u0440\u0435!"
     textPath: Monologues\Happy/24_ImTheHappiestSlimeInTheWorld
-    time: 4
   minValue: 5
   maxValue: 10
