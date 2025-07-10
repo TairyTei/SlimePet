@@ -15,6 +15,6 @@ MonoBehaviour:
   monologue:
     text: "\u041F\u043E\u0440\u0430 \u043B\u043E\u0436\u0438\u0442\u044C\u0441\u044F,
       \u043D\u0435 \u0434\u0443\u043C\u0430\u0435\u0448\u044C"
-    time: 4
+    textPath: Monologues\TimeLinked/5_DeepNight
   minTime: 2
   maxTime: 6

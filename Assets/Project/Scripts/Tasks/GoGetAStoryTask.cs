@@ -8,6 +8,8 @@ public class GoGetAStoryTask : Task
     private bool isPetOnThePoint = false;
     private const float standardJourneyTime = 10;
     private float journeyTime;
+    public override bool IsDragAllowed => false;
+
     public GoGetAStoryTask(string taskName, float timeLimit) : base(taskName, timeLimit)
     {
         startTime = Time.time;
@@ -15,7 +17,11 @@ public class GoGetAStoryTask : Task
     }
     public override void TaskStart()
     {
-        Bed.instance.ActivateStoryMark(true);
+        Settings settings = SettingsManager.insntace.Settings;
+        if(settings.displayStoryMark)
+            Bed.instance.ActivateStoryMark(true);
+        
+
         do
         {
             targetPos = new Vector2(Random.Range(-50, 50), Random.Range(-50, 50));
@@ -50,6 +56,7 @@ public class GoGetAStoryTask : Task
             PlayerPrefs.SetInt("StoriesInQueue", Pet.Instance.Stats.StoriesQueue);
             StoriesWindow.Instance.UnlockRandomStory();
         }
+
         Bed.instance.ActivateStoryMark(false);
     }
     public override void TaskFail()

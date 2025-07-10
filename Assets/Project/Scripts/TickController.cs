@@ -8,7 +8,7 @@ public class TickController : MonoBehaviour, IInitializable
     public event Action OnSmallTick;
     public event Action OnLargeTick;
 
-    public const float middleTick = 15;
+    public const float smallTick = 15;
     public const float largeTick = 900;
 
     public static TickController Instance { get; private set; }
@@ -22,7 +22,7 @@ public class TickController : MonoBehaviour, IInitializable
     {
         while (true)
         {
-            yield return new WaitForSeconds(middleTick / Time.timeScale);
+            yield return new WaitForSeconds(smallTick / Time.timeScale);
             OnSmallTick.Invoke();
         }
     }

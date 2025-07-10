@@ -11,6 +11,12 @@ public class OrderToSleepButton : MonoBehaviour
     {
         pet.CancelBreak();
         pet.AddTask(new SleepTask("Sleep", -1, false), 0);
-	    petMenu.Close();
+        petMenu.Close();
+        
+        if (Random.Range(0, 10) <= 2)
+        {
+            MonologueWindow mw = MonologueWindow.instance;
+            mw.RandomMonologueFromList(mw.SendToBedMonologues);
+        }
     }
 }

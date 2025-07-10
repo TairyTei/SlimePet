@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 2686787705323367271, guid: 497562e0e34901d459bc489d66e70503, type: 3}
-  nameOfObject: Meat
-  descriptionOfObject: "\u041A\u0443\u0448\u0430\u043D\u044C\u0435"
+  id: Meat
+  namePath: 
   price: 0
   tags:
   - food
@@ -177,6 +177,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa2e3b3b905c80f419449ef873429e81, type: 2}
   - {fileID: 11400000, guid: b97bd9f6f5b122342a54cf9c5f21433e, type: 2}
   - {fileID: 11400000, guid: b955fc61c4416a94395c018aa17e3995, type: 2}
+  spawnMonologues: []
   satiety: 2.5
   love: 0
   poopiness: 1

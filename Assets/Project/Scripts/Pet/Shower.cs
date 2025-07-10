@@ -44,12 +44,19 @@ public class Shower : MonoBehaviour
         //TransparentWindow.Instance.ClickThrough = false;
         CursorSprite.Instance.AddSprite(showerCursorSprite, 0);
         PetMenu.instance.Close();
+
+        if (Random.Range(0, 10) <= 2)
+        {
+            MonologueWindow mw = MonologueWindow.instance;
+            mw.RandomMonologueFromList(mw.CleanMonologues);
+        }
     }
     public void Close()
     {
         isOpened = false;
         //TransparentWindow.Instance.ClickThrough = true;
         CursorSprite.Instance.RemoveSprite(showerCursorSprite);
+        ObjectInteraction.instance.DraggedObject = null;
     }
     public void Wash()
     {

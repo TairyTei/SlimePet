@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +26,7 @@ public class FurnitureBox : MonoBehaviour, IInitializable
     [SerializeField]
     private List<RoomObject> allFurniture = new List<RoomObject>();
     public List<RoomObject> AllFurniture {get{ return allFurniture; }}
+    [SerializeField] private List<string> randomTags = new List<string>();
     private List<RoomObject> furnitureInRoom = new List<RoomObject>();
     private RoomObject openedFurniture;
     private int openedFurnitureID;
@@ -102,6 +103,11 @@ public class FurnitureBox : MonoBehaviour, IInitializable
         roomObject.Put();
         if (!furnitureInRoom.Contains(roomObject))
             AddFurnitureToRoom(roomObject);
+
+        if (Random.Range(0, 10) < 4 && roomObject.SpawnMonologues.Length > 0)
+        {
+            MonologueWindow.instance.RandomMonologueFromList(roomObject.SpawnMonologues.ToList());
+        }
     }
     public void FurnitureButton()
     {
@@ -137,8 +143,18 @@ public class FurnitureBox : MonoBehaviour, IInitializable
     {
         furnitureInRoom.Add(furniture);
         PlayerPrefs.SetInt("Is" + furniture.id + "InRoom", 1);
+
+        if (furniture.RandomTags)
+        {
+            string randomTag = randomTags[Random.Range(0, randomTags.Count)];
+            if (!furniture.tags.Contains(randomTag) && Random.Range(0, 100) == 1)
+            {
+                furniture.tags.Add(randomTag);
+            }
+        }
     }
-    public void RemoveFurnitureFromRoom(RoomObject furniture){
+    public void RemoveFurnitureFromRoom(RoomObject furniture)
+    {
         if (furnitureInRoom.Contains(furniture))
         {
             furnitureInRoom.Remove(furniture);

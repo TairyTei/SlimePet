@@ -15,6 +15,6 @@ MonoBehaviour:
   monologue:
     text: "\u0414\u043E\u0431\u0440\u0435\u0439\u0448\u0435\u0433\u043E \u0432\u0435\u0447\u0435\u0440\u043E\u0447\u043A\u0430
       <3"
-    time: 4
+    textPath: Monologues\TimeLinked/3_GoodEvening
   minTime: 17
   maxTime: 22

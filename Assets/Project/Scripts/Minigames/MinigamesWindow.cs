@@ -22,6 +22,8 @@ public class MinigamesWindow : MonoBehaviour
         Pet.Instance.AddTask(victim, 0);
         Pet.Instance.CancelBreak();
         Close();
+
+        SayShit();
     }
     public void StartHideAndSeekMinigame()
     {
@@ -29,6 +31,8 @@ public class MinigamesWindow : MonoBehaviour
         Pet.Instance.AddTask(hideAndSeek, 0);
         Pet.Instance.CancelBreak();
         Close();
+
+        SayShit();
     }
     public void AimMinigame()
     {
@@ -36,5 +40,16 @@ public class MinigamesWindow : MonoBehaviour
         Pet.Instance.AddTask(aim, 0);
         Pet.Instance.CancelBreak();
         Close();
+
+        SayShit();
+    }
+
+    private void SayShit()
+    {
+        if (Random.Range(0, 10) <= 2)
+        {
+            MonologueWindow mw = MonologueWindow.instance;
+            mw.RandomMonologueFromList(mw.PlayMonologues);
+        }
     }
 }

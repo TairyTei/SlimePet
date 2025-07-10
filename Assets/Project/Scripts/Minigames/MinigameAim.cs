@@ -7,6 +7,8 @@ public class MinigameAim : Task
     private int points = 0;
     private bool miss = false;
     private MinigameManager minigameManager;
+    private const float maxTargetDistance = 4f;
+    private const float avoidCursorRadius = 4.5f;
     public override bool IsDragAllowed { get { return false; } }
     public MinigameAim(string taskName, float timeLimit, MinigameManager minigameManager) : base(taskName, timeLimit)
     {
@@ -25,13 +27,12 @@ public class MinigameAim : Task
     {
         if (subtasks.Count == 0)
         {
-            Task task = TaskGenerator.GoToRandomPointTask(false);
+            Task task = new GoToTargetTask("GoToPoint", -1, PickNewTarget(), 0.3f, false);
             subtasks.Add(task);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            ;
             Collider2D collider = ObjectInteraction.instance.ColliderUnderCursor;
             if (collider != null && collider.GetComponent<Pet>())
             {
@@ -50,7 +51,30 @@ public class MinigameAim : Task
 
         SubtasksExecution();
     }
-    public override void TaskInterrupt() {}
+    private Vector2 PickNewTarget()
+    {
+        WindowBorderCollider wb = WindowBorderCollider.instance;
+        Pet pet = Pet.Instance;
+        Vector2 point;
+        int attempts = 0;
+        do
+        {
+            if (wb.isInBounds(Pet.Instance.transform.position))
+            {
+                Vector2 random = new Vector2(Random.Range(-maxTargetDistance, maxTargetDistance), Random.Range(-maxTargetDistance, maxTargetDistance));
+                point = (Vector2)pet.transform.position + random;
+            }
+            else
+            {
+                point = wb.GetRandomPointInRoom();
+            }
+            attempts++;
+        } while (!wb.isInBounds(point)
+        || Vector2.Distance(point, WorldCursor.instance.transform.position) < avoidCursorRadius && attempts < 20);
+
+        return point;
+    }
+    public override void TaskInterrupt() { }
     public override void TaskEnd()
     {
         Pet.Instance.SpeedMultiplier = 1;

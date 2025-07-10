@@ -12,8 +12,9 @@ public class SettingsMenu : MonoBehaviour, IInitializable
     public GameObject menu;
     public TMP_Dropdown languageChoise;
     public TMP_Dropdown framerateChoise;
-    public Toggle launchWithWindows;
+    public Toggle displayStoryMark;
     public Toggle petCatchesCursor;
+    public Toggle pinWindowOnTop;
     public Slider musicVolume, mainVolume, systemVolume;
     public event Action OnSettingsUpdated;
     [SerializeField] private MusicPlayer musicPlayer;
@@ -35,8 +36,9 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         musicVolume.value = settings.musicVolume;
         mainVolume.value = settings.mainVolume;
         systemVolume.value = settings.systemVolume;
-        framerateChoise.value = Array.IndexOf(availableFramerate, settings.frameRate);
-        launchWithWindows.isOn = AutoStartManager.IsAutoStartEnabled();
+        framerateChoise.SetValueWithoutNotify(Array.IndexOf(availableFramerate, settings.frameRate));
+        displayStoryMark.SetIsOnWithoutNotify(settings.displayStoryMark);
+        pinWindowOnTop.SetIsOnWithoutNotify(settings.pinWindowOnTop);
     }
     public void ApplySettings()
     {
@@ -98,10 +100,21 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         }
         SettingsManager.insntace.SetFrameRate(frameRate);
 
+        if(OnSettingsUpdated != null)
+            OnSettingsUpdated.Invoke();
     }
-    public void SetAutostart()
+    public void ChangePinWindowOnTop()
     {
-        AutoStartManager.SetAutoStart(launchWithWindows.isOn);
+        SettingsManager.insntace.SetPinWindowOnTop(pinWindowOnTop.isOn);
+    }
+    public void SetDisplayStoryMark()
+    {
+        PlayerPrefs.SetInt("DisplayStoryMark", displayStoryMark.isOn ? 1 : 0);
+        Settings settings = SettingsManager.insntace.Settings;
+        settings.displayStoryMark = displayStoryMark.isOn;
+
+        if (OnSettingsUpdated != null)
+            OnSettingsUpdated.Invoke();
     }
     public void DoesPetCatchCursor()
     {

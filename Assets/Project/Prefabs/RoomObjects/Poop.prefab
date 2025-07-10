@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: -5620055989646091708, guid: 116da758757fdf2468f35c6aac6e1280, type: 3}
-  nameOfObject: shit
-  descriptionOfObject: Piece of dirty shit
+  id: poop
+  namePath: 
   price: 100
   tags:
   - Poop
@@ -182,6 +182,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47d9bc4b017f4fb4a903578afaa1c8df, type: 2}
   - {fileID: 11400000, guid: bcb3955b996d77146af2e07223d838ba, type: 2}
   - {fileID: 11400000, guid: d15e7ac4ccd9e72478c063cb6f73a1a3, type: 2}
+  spawnMonologues: []
   maxHp: 3
   regenerationDelay: 0.25
   hp: 3

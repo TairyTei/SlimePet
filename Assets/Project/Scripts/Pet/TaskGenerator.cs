@@ -11,9 +11,17 @@ public class TaskGenerator{
             Task goToSleep = new SleepTask("Sleep", -1, true);
             return goToSleep;
         }
-        if(Pet.Instance.Stats.Satiety < 2f && Random.Range(0, 2) == 0){
+        if (Pet.Instance.Stats.Satiety < 2f && Random.Range(0, 2) == 0)
+        {
             Task eatTask = EatTask();
-            if(eatTask != null) return eatTask;
+            if (eatTask != null)
+            {
+                return eatTask;
+            }
+            else
+            {
+                MonologueWindow.instance.RandomHungerMonologue();
+            }
         }
         if (Pet.Instance.Stats.Cleanliness < 2f && Random.Range(0, 3) == 0)
         {
@@ -36,11 +44,14 @@ public class TaskGenerator{
             case int n when (n <= 80):
                 return GoToRandomPointTask();
             case int n when (n > 80 && n <= 90):
+
                 RoomObject[] objects = FurnitureBox.instance.GetObjectsInRoom();
                 if (objects.Length == 0) return GetRandomTask();
 
                 int randObj = Random.Range(0, objects.Length);
+                if (objects[randObj].tags.Contains("scary")) return GetRandomTask();
                 return objects[randObj].ObjectTask();
+
              case int n when (n > 90 && n <= 95):
                 if(PlayerPrefs.GetInt("DoesPetCatchCursor") == 1)        
                     return CatchCursorTask();
@@ -57,15 +68,32 @@ public class TaskGenerator{
     public static Task GoToRandomPointTask(bool breakAfter = true){
         WindowBorderCollider wb = WindowBorderCollider.instance;
         Vector2 point;
-        do{
-            if(wb.isInBounds(Pet.Instance.transform.position)){
-                Vector2 random = new Vector2(Random.Range(-4.0f, 4.0f),Random.Range(-4.0f, 4.0f));
+        bool isThereAScaryObject;
+        do
+        {
+            if (wb.isInBounds(Pet.Instance.transform.position))
+            {
+                Vector2 random = new Vector2(Random.Range(-4.0f, 4.0f), Random.Range(-4.0f, 4.0f));
                 point = (Vector2)Pet.Instance.transform.position + random;
             }
-            else{
+            else
+            {
                 point = wb.GetRandomPointInRoom();
             }
-        } while(!wb.isInBounds(point));
+
+            isThereAScaryObject = false;
+            Collider2D [] collidersAround = Physics2D.OverlapCircleAll(point, 4);
+            foreach (Collider2D collider in collidersAround)
+            {
+                RoomObject roomObject = collider.GetComponent<RoomObject>();
+                if (roomObject == null) continue;
+
+                if (roomObject.tags.Contains("scary"))
+                {
+                    isThereAScaryObject = true;
+                }
+            }
+        } while (!wb.isInBounds(point) || isThereAScaryObject);
         Task gototask = new GoToTargetTask("go to point " + Random.Range(0, 999), 15, point, 1, breakAfter);
         return gototask;
     }
@@ -78,11 +106,12 @@ public class TaskGenerator{
         List<Task> availableTasks = new List<Task>();
 
         RoomObject[] balls = FurnitureBox.instance.GetObjectsWithTag("ball");
-        if (balls.Length > 0)
+        for(int i = 0; i < balls.Length; i++)
         {
-            int randomBall = Random.Range(0, balls.Length - 1);
-            Rigidbody2D ball = balls[randomBall].GetComponent<Rigidbody2D>();
-            Task playWithBall = new PlayWithBallTask("Play with " + balls[randomBall].id, 15, ball);
+            if (!balls[i].GetComponent<Rigidbody2D>()) continue;
+
+            Rigidbody2D ballRigidbody = balls[i].GetComponent<Rigidbody2D>();
+            Task playWithBall = new PlayWithBallTask("Play with " + balls[i].id, 15, ballRigidbody);
             availableTasks.Add(playWithBall);
         }
 
@@ -102,7 +131,7 @@ public class TaskGenerator{
         RoomObject[] food = FurnitureBox.instance.GetObjectsWithTag("food");
         if(food.Length <= 0) return null;
         int randomFood = Random.Range(0, food.Length-1);
-        Task eatTask = new EatTask("Eat " + food[randomFood].id, 15,(FoodObject)food[randomFood], 0.7f);
+        Task eatTask = new EatTask("Eat " + food[randomFood].id, 15,food[randomFood], 0.7f);
         return eatTask;
     }
 }

@@ -71,6 +71,12 @@ public class Pat : MonoBehaviour
         Pet.Instance.Animator.SetBool("Pat", true);
         loveParticles.Play();
         StartCoroutine(PatSoundPlaying());
+
+        if (Random.Range(0, 10) <= 2)
+        {
+            MonologueWindow mw = MonologueWindow.instance;
+            mw.RandomMonologueFromList(mw.PatMonologues);
+        }
     }
     IEnumerator PatSoundPlaying()
     {

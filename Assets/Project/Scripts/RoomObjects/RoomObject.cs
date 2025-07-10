@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RoomObject : LocalizableMB
@@ -13,8 +14,11 @@ public class RoomObject : LocalizableMB
     public List<string> tags = new List<string>();
     [SerializeField] private Sprite interactCursorSprite;
     [SerializeField] private MonologueRule[] overlookMonologues;
+    [SerializeField] private MonologueRule[] spawnMonologues;
+    public MonologueRule[] SpawnMonologues { get { return spawnMonologues; } }
     public Sprite InteractCursorSprite { get { return interactCursorSprite; } }
     public virtual bool IsFunctional { get { return false; } }
+    public virtual bool RandomTags => true;
     public virtual void Put()
     {
 
@@ -37,8 +41,13 @@ public class RoomObject : LocalizableMB
         }
         return task;
     }
-    void OnDestroy()
+    public void OnDestroy()
     {
+        if (!gameObject.scene.isLoaded) return;
+        if (FurnitureBox.instance.GetObjectsInRoom().Contains(this))
+        {
+            FurnitureBox.instance.RemoveFurnitureFromRoom(this);
+        }
         CursorSprite.Instance.RemoveSprite(InteractCursorSprite);
     }
     public override void OnLanguageChanged()

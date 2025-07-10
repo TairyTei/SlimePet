@@ -165,10 +165,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: -2965909574126374790, guid: 497562e0e34901d459bc489d66e70503, type: 3}
-  nameOfObject: Coin
-  descriptionOfObject: 
+  id: coin
+  namePath: 
   price: 1
   tags: []
   interactCursorSprite: {fileID: 8589531035368735815, guid: c453a742052200e4cb85d20601bef968, type: 3}
+  overlookMonologues: []
+  spawnMonologues: []
   count: 1
   coinSound: {fileID: 8300000, guid: 03d52691d1b2ef84eb3c8c0b075ffe35, type: 3}

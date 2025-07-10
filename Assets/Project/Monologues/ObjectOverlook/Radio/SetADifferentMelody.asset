@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u0425\u043C-\u043C, \u0430 \u043F\u043E\u0441\u0442\u0430\u0432\u044C
       \u0434\u0440\u0443\u0433\u0443\u044E \u043C\u0435\u043B\u043E\u0434\u0438\u044E?"
-    textPath: Monologues\ObjectOverlook/Bed/IGetDirtyAndHungryFasterWhenISleep
-    time: 3
+    textPath: Monologues\ObjectOverlook/Radio/SetADifferentMelody

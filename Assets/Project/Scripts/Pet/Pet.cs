@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using TMPro;
 using Unity.Mathematics;
 using UnityEditor;
@@ -43,12 +42,11 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
 
     //variables
     private float breakUntil = 0;
+    private int monologueCooldown = 0;
 
     [SerializeField]
     private List<Task> tasks = new List<Task>();
     public int TaskCount { get {return tasks.Count; }}
-    [SerializeField]
-    private List<String> taskHistory = new List<string>();
 
     private List<string> idleRequests = new List<string>();
 
@@ -122,23 +120,23 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
     private void OnLargeTick()
     {
         if (Stats.Satiety <= 0.5f && Stats.Cleanliness <= 0.5f && Stats.Love <= 0.5f && Stats.Boredom <= 5)
-            {
-                Stats.Happiness = Stats.Happiness - 0.25f;
-            }
-            else
-            {
-                Stats.Happiness = Stats.Happiness + 0.5f;
-                Stats.Expirience += 3;
-            }
+        {
+            Stats.Happiness = Stats.Happiness - 0.25f;
+        }
+        else
+        {
+            Stats.Happiness = Stats.Happiness + 0.5f;
+            Stats.Expirience += 3;
+        }
 
-            if (Stats.StoriesQueue > 0 && tasks.Count == 0 || Stats.StoriesQueue > 0 && tasks[0].TaskName != "Story")
+        if (Stats.StoriesQueue > 0 && tasks.Count == 0 || Stats.StoriesQueue > 0 && tasks[0].TaskName != "Story")
+        {
+            if (StoriesWindow.Instance.GetArrayOfAvailableStories().Length > 0)
             {
-                if (StoriesWindow.Instance.GetArrayOfAvailableStories().Length > 0)
-                {
-                    Task storyTask = new GoGetAStoryTask("Story", -1);
-                    AddTask(storyTask);
-                }
+                Task storyTask = new GoGetAStoryTask("Story", -1);
+                AddTask(storyTask);
             }
+        }
     }
     private IEnumerator PooC()
     {
@@ -172,6 +170,8 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
             RemoveTask(tasks[0]);
             //Break(Random.Range(1,10));
             TryToSay();
+            if (monologueCooldown > 0)
+                monologueCooldown--;
             return;
         }
         if (!tasks[0].isStarted)
@@ -183,10 +183,13 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
     }
     private void TryToSay()
     {
+        if (monologueCooldown > 0) return;
+
         int rand = Random.Range(0, 100);
         if (rand <= 5)
         {
             MonologueWindow.instance.SaySomething();
+            monologueCooldown = 2;
         }
     }
 

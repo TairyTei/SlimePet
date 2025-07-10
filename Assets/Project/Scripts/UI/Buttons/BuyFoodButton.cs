@@ -60,5 +60,11 @@ public class BuyFoodButton : MonoBehaviour {
         ObjectInteraction.instance.DraggedObject = foodObject.gameObject;
 
         PetMenu.instance.Close();
+
+        if (Random.Range(0, 10) <= 2)
+        {
+            MonologueWindow mw = MonologueWindow.instance;
+            mw.RandomMonologueFromList(mw.FeedMonologues);
+        }
     }
 }

@@ -111,7 +111,12 @@ public class SaveManger : MonoBehaviour, IInitializable
 
         foreach (RoomObject obj in roomObjects)
         {
+            
             bool isInRoom = PlayerPrefs.GetInt("Is" + obj.id + "InRoom") == 1;
+             
+            Debug.Log(obj.id);
+            Debug.Log(isInRoom);
+            Debug.Log(PlayerPrefs.GetInt("Is" + obj.id + "InRoom"));
             if (!isInRoom) continue;
 
             furnitureBox.AddFurnitureToRoom(obj);

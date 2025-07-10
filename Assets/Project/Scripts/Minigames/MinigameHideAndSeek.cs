@@ -72,6 +72,10 @@ public class MinigameHideAndSeek : Task
             PlayerPrefs.SetInt("HideAndSeek_Record", countOfCatches);
             SoundManager.instance.PlaySound(minigameManager.RecordSound, 0, SoundType.System);
         }
+        else
+        {
+            SoundManager.instance.PlaySound(minigameManager.MissSound, 0.3f, SoundType.Main);
+        }
     }
     public override void TaskFail()
     {

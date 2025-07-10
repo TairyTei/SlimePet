@@ -23,7 +23,7 @@ public class VacuumCleaner : RoomObject
 
     public override void Put()
     {
-        StartCoroutine(RoomCheck());
+        StartCoroutine(IERoomCheck());
     }
     public override void PutAway()
     {
@@ -31,21 +31,22 @@ public class VacuumCleaner : RoomObject
         StopCoroutine("RoomCheck");
     }
 
-    IEnumerator RoomCheck()
+    IEnumerator IERoomCheck()
     {
         while (true)
         {
-            //Debug.Log("StartFind");
             yield return new WaitForSeconds(checkDelay);
             if (target != null || !gameObject.activeSelf) continue;
-
-            RoomObject[] poops = FurnitureBox.instance.GetObjectsWithTag("Poop");
-            //Debug.Log(poops.Length);
-            if (poops.Length > 0)
-            {
-                int rand = Random.Range(0, poops.Length);
-                target = poops[rand].transform;
-            }
+            RoomCheck();
+        }
+    }
+    private void RoomCheck()
+    {
+        RoomObject[] poops = FurnitureBox.instance.GetObjectsWithTag("Poop");
+        if (poops.Length > 0)
+        {
+            int rand = Random.Range(0, poops.Length);
+            target = poops[rand].transform;
         }
     }
     private void Clean()
@@ -59,6 +60,7 @@ public class VacuumCleaner : RoomObject
             Destroy(target.gameObject);
             target = null;
             SoundManager.instance.PlaySound(suckSound, 0.3f, SoundType.Main);
+            RoomCheck();
         }
     }
     private void ReturnToStation()

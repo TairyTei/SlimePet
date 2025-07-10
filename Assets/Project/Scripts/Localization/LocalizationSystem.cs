@@ -21,7 +21,7 @@ public static class LocalizationSystem
         }
         else
         {
-            SetLanguage("en"); // Язык по умолчанию
+            SetLanguage("russian");
         }
     }
 

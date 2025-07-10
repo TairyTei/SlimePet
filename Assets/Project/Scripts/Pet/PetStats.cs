@@ -24,8 +24,7 @@ public class PetStats
         get { return expirience; }
         set
         {
-            expirience = value;
-            level = CalculateLevelFromExp(expirience);
+            SetExpirience(value);
         }
     }
     [SerializeField] private int coins = 0;

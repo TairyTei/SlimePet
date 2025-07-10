@@ -9,8 +9,15 @@ public class MonologueWindow : MonoBehaviour, IInitializable
 {
     public GameObject monologueWindow;
     public TextMeshProUGUI monologueText;
-    public List<MonologueRule> idleMonologues = new List<MonologueRule>();
-    public List<MonologueRule> hungerMonologues = new List<MonologueRule>();
+    public List<MonologueRule> IdleMonologues = new List<MonologueRule>();
+    public List<MonologueRule> HungerMonologues = new List<MonologueRule>();
+    public List<MonologueRule> FeedMonologues = new List<MonologueRule>();
+    public List<MonologueRule> CleanMonologues = new List<MonologueRule>();
+    public List<MonologueRule> PatMonologues = new List<MonologueRule>();
+    public List<MonologueRule> PlayMonologues = new List<MonologueRule>();
+    public List<MonologueRule> SendToBedMonologues = new List<MonologueRule>();
+
+
     [SerializeField] private List<NameCheck_MonologueRule> nameMonologues = new List<NameCheck_MonologueRule>();
     private Dictionary<string, List<MonologueRule>> nameMonologueDict = new Dictionary<string, List<MonologueRule>>();
 
@@ -91,7 +98,7 @@ public class MonologueWindow : MonoBehaviour, IInitializable
         StopCoroutine("MonologueCoroutine");
         StartCoroutine(MonologueCoroutine(monologue));
     }
-    private void RandomMonologueFromList(List<MonologueRule> monologues)
+    public void RandomMonologueFromList(List<MonologueRule> monologues)
     {
         if (monologues == null || monologues.Count == 0)
         {
@@ -112,7 +119,7 @@ public class MonologueWindow : MonoBehaviour, IInitializable
     // Все монологи с учетом выбранных скинов, шляп
     public void SaySomething()
     {
-        List<MonologueRule> combined = idleMonologues
+        List<MonologueRule> combined = IdleMonologues
         .Concat(AvailableHatMonologues())
         .Concat(AvailableNameMonologues())
         .Concat(AvailablePetSkinMonologues())
@@ -122,7 +129,7 @@ public class MonologueWindow : MonoBehaviour, IInitializable
     }
     public void RandomHungerMonologue()
     {
-        RandomMonologueFromList(hungerMonologues);
+        RandomMonologueFromList(HungerMonologues);
     }
     public List<MonologueRule> AvailableHatMonologues()
     {

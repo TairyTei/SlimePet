@@ -26,7 +26,9 @@ public class MusicPlayer : MonoBehaviour, IInitializable
         SettingsMenu.Instance.OnSettingsUpdated += OnSettingsUpdated;
     }
     private void OnSettingsUpdated() {
-        source.volume = SettingsManager.insntace.Settings.musicVolume;
+        Settings settings = SettingsManager.insntace.Settings;
+        if(settings.musicVolume != source.volume)
+            source.volume = settings.musicVolume;
     }
     void Start()
     {
