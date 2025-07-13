@@ -6,6 +6,7 @@ public class Bed : RoomObject, IObjectFunction, IInitializable
     [SerializeField] private GameObject storyMark;
     public static Bed instance { get; private set; }
     public override bool RandomTags => false;
+    public override bool CanBeRemoved => false;
 
 
     public void Initialize()

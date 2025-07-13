@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class PetMenu : MonoBehaviour
 {
     public RectTransform menu;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator optionsAnimator;
+    [SerializeField] private Animator variablesAnimator;
     [SerializeField] private AudioClip openSound, closeSound;
     public GameObject Options;
     public GameObject FoodList;
@@ -64,7 +65,8 @@ public class PetMenu : MonoBehaviour
         pet.AddIdleRequest("PetMenu");
         isOpened = true;
         UpdateStatSliders();
-        animator.SetBool("IsOpened", true);
+        optionsAnimator.SetBool("IsOpened", true);
+        variablesAnimator.SetBool("IsOpened", true);
         SoundManager.instance.PlaySound(openSound, 0.1f, SoundType.System);
     }
     public void OpenFoodList()
@@ -87,7 +89,8 @@ public class PetMenu : MonoBehaviour
     }
     IEnumerator IECloseAnim()
     {
-        animator.SetBool("IsOpened", false);
+        optionsAnimator.SetBool("IsOpened", false);
+        variablesAnimator.SetBool("IsOpened", false);
         yield return new WaitForSeconds(0.25f);
         menu.gameObject.SetActive(false);
     }

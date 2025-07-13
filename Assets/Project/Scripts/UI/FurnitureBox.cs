@@ -147,9 +147,9 @@ public class FurnitureBox : MonoBehaviour, IInitializable
         if (furniture.RandomTags)
         {
             string randomTag = randomTags[Random.Range(0, randomTags.Count)];
-            if (!furniture.tags.Contains(randomTag) && Random.Range(0, 100) == 1)
+            if (!furniture.temporaryTags.Contains(randomTag) && Random.Range(0, 100) == 1)
             {
-                furniture.tags.Add(randomTag);
+                furniture.temporaryTags.Add(randomTag);
             }
         }
     }
@@ -169,8 +169,13 @@ public class FurnitureBox : MonoBehaviour, IInitializable
 
         foreach (RoomObject obj in furnitureInRoom)
         {
-            if(obj.tags.Contains(tag))
+            if (obj.tags.Contains(tag))
                 objects.Add(obj);
+            if (obj.temporaryTags.Contains(tag))
+            {
+                objects.Add(obj);
+                obj.temporaryTags.Remove(tag);
+            }
         }
         return objects.ToArray();
     }

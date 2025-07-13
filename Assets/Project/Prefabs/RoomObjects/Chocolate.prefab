@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 3958391511844378375, guid: 497562e0e34901d459bc489d66e70503, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,11 +165,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 3958391511844378375, guid: 497562e0e34901d459bc489d66e70503, type: 3}
-  nameOfObject: Chocolate
-  descriptionOfObject: "\u041A\u0443\u0448\u0430\u043D\u044C\u0435"
+  id: 
+  namePath: 
   price: 3
   tags:
   - food
+  temporaryTags: []
   interactCursorSprite: {fileID: 8589531035368735815, guid: c453a742052200e4cb85d20601bef968, type: 3}
   overlookMonologues:
   - {fileID: 11400000, guid: b183746fe0d88bd41abbb281d157e956, type: 2}
@@ -177,6 +178,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27d8498f217fd94498cee3ad8281ec9e, type: 2}
   - {fileID: 11400000, guid: b9cb91822e287014ea30a5c3d6fd59ae, type: 2}
   - {fileID: 11400000, guid: 3168d48854700a8479ce7e4500d6b5ca, type: 2}
+  spawnMonologues: []
   satiety: 2.5
   love: 1
   poopiness: 0.5

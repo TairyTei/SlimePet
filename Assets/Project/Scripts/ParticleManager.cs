@@ -5,9 +5,12 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour
 {
     [SerializeField] private ParticleSystem poopSmell;
-    public ParticleSystem PoopSmell { get { return poopSmell; } set { poopSmell = value; } }
+    public ParticleSystem PoopSmell => poopSmell;
     [SerializeField] private ParticleSystem sleep;
-    public ParticleSystem Sleep { get { return sleep; } set { sleep = value; } }
+    public ParticleSystem Sleep => sleep;
+    [SerializeField] private ParticleSystem love;
+    public ParticleSystem Love => love;
+
 
 
     private static ParticleManager instance;
@@ -29,6 +32,16 @@ public class ParticleManager : MonoBehaviour
         {
             instance = value;
         }
+    }
+    public void PlayParticlesFor(ParticleSystem particleSystem, float time)
+    {
+        StartCoroutine(IEPlayParticlesFor(particleSystem, time));
+    }
+    IEnumerator IEPlayParticlesFor(ParticleSystem particleSystem, float time)
+    {
+        particleSystem.Play();
+        yield return new WaitForSeconds(time);
+        particleSystem.Stop();
     }
     void Awake()
     {

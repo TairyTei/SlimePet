@@ -33,7 +33,7 @@ public class EatTask : DynamicTargetTask
         }
         else
         {
-            MonoBehaviour.Destroy(foodObj.gameObject);
+            RoomObject.DestroyRoomObject(foodObj);
         }
         SoundManager.instance.PlaySound(pet.EatSound, 0.3f, SoundType.Main);
     }

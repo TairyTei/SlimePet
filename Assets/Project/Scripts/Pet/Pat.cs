@@ -6,7 +6,6 @@ public class Pat : MonoBehaviour
 {
     [SerializeField] private float loveSpeed = 5f;
     [SerializeField] private float radius = 3f;
-    [SerializeField] private ParticleSystem loveParticles;
     [SerializeField] private Sprite patCursorSprite;
     [SerializeField] private AudioClip patSound;
     [SerializeField] private float patSoundDelay = 0.25f;
@@ -59,7 +58,7 @@ public class Pat : MonoBehaviour
         Pet.Instance.RemoveIdleRequest("Pat");
         CursorSprite.Instance.SetCursorVisibility(true);
         Pet.Instance.Animator.SetBool("Pat", false);
-        loveParticles.Stop();
+        ParticleManager.Instance.Love.Stop();
     }
     public void StartPat()
     {
@@ -69,7 +68,7 @@ public class Pat : MonoBehaviour
         CursorSprite.Instance.RemoveSprite(patCursorSprite);
         CursorSprite.Instance.SetCursorVisibility(false);
         Pet.Instance.Animator.SetBool("Pat", true);
-        loveParticles.Play();
+        ParticleManager.Instance.Love.Play();
         StartCoroutine(PatSoundPlaying());
 
         if (Random.Range(0, 10) <= 2)

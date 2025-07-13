@@ -10,8 +10,11 @@ public class Shower : MonoBehaviour
     [SerializeField] private Vector2 particlesOffset;
     [SerializeField] private ParticleSystem waterParticles;
     [SerializeField] private Sprite showerCursorSprite;
+    [SerializeField] private AudioClip sound;
+    [SerializeField] private float soundDelay = 0.1f;
 
     private bool isOpened = false;
+    private bool isWashing = false;
     public bool IsOpened { get { return isOpened; } }
 
     private static Shower instance;
@@ -22,16 +25,21 @@ public class Shower : MonoBehaviour
     }
     void Update()
     {
-        if (isOpened && Input.GetMouseButton(0))
+        if (isOpened && Input.GetMouseButton(0) && !isWashing)
+        {
+            isWashing = true;
+            StartCoroutine(SoundPlaying());
+        }
+        else if (isOpened && !Input.GetMouseButton(0) && isWashing)
+        {
+            isWashing = false;
+
+            waterParticles.Stop();
+
+        }
+        if (isWashing)
         {
             Wash();
-        }
-        else
-        {
-            if (waterParticles.isPlaying)
-            {
-                waterParticles.Stop();
-            }
         }
         if (isOpened && Input.GetMouseButtonDown(1))
         {
@@ -49,6 +57,14 @@ public class Shower : MonoBehaviour
         {
             MonologueWindow mw = MonologueWindow.instance;
             mw.RandomMonologueFromList(mw.CleanMonologues);
+        }
+    }
+    IEnumerator SoundPlaying()
+    {
+        while (isWashing)
+        {
+            yield return new WaitForSeconds(soundDelay);
+            SoundManager.instance.PlaySound(sound, 0.4f, SoundType.Main);
         }
     }
     public void Close()
@@ -81,9 +97,5 @@ public class Shower : MonoBehaviour
             waterParticles.Play();
         }
     }
-    void OnDrawGizmos()
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Gizmos.DrawWireSphere(mousePos + offset, radius);
-    }
+  
 }

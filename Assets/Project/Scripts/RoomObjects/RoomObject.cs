@@ -12,6 +12,7 @@ public class RoomObject : LocalizableMB
     //public string descriptionOfObject;
     public int price;
     public List<string> tags = new List<string>();
+    public List<string> temporaryTags = new List<string>();
     [SerializeField] private Sprite interactCursorSprite;
     [SerializeField] private MonologueRule[] overlookMonologues;
     [SerializeField] private MonologueRule[] spawnMonologues;
@@ -19,6 +20,7 @@ public class RoomObject : LocalizableMB
     public Sprite InteractCursorSprite { get { return interactCursorSprite; } }
     public virtual bool IsFunctional { get { return false; } }
     public virtual bool RandomTags => true;
+    public virtual bool CanBeRemoved => true;
     public virtual void Put()
     {
 
@@ -41,14 +43,14 @@ public class RoomObject : LocalizableMB
         }
         return task;
     }
-    public void OnDestroy()
+    public static void DestroyRoomObject(RoomObject roomObject)
     {
-        if (!gameObject.scene.isLoaded) return;
-        if (FurnitureBox.instance.GetObjectsInRoom().Contains(this))
+        if (FurnitureBox.instance.GetObjectsInRoom().Contains(roomObject))
         {
-            FurnitureBox.instance.RemoveFurnitureFromRoom(this);
+            FurnitureBox.instance.RemoveFurnitureFromRoom(roomObject);
         }
-        CursorSprite.Instance.RemoveSprite(InteractCursorSprite);
+        CursorSprite.Instance.RemoveSprite(roomObject.InteractCursorSprite);
+        Destroy(roomObject.gameObject);
     }
     public override void OnLanguageChanged()
     {

@@ -27,7 +27,7 @@ public class TaskGenerator{
         {
             if (FurnitureBox.instance.GetObjectsWithTag("SwimmingPool").Length > 0)
             {
-                Task swim = new SwimTask("Swim", -1, true);
+                Task swim = new SwimTask( -1, true);
                 return swim;
             }
         }
@@ -36,6 +36,16 @@ public class TaskGenerator{
             Task task = PlayTask();
             if (task != null)
                 return task;
+        }
+        if (Pet.Instance.Stats.Love < 2f && Random.Range(0, 4) == 0)
+        {
+            RoomObject[] favoriteObjects = FurnitureBox.instance.GetObjectsWithTag("favorite");
+            if (favoriteObjects.Length > 0)
+            {
+                int randomObject = Random.Range(0, favoriteObjects.Length);
+                Task hugTheToy = new HugTheBearTask("HugTheBear", 10f, favoriteObjects[randomObject]);
+                return hugTheToy;
+            }
         }
 
         int random = Random.Range(0, 100);

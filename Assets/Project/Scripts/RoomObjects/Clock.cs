@@ -6,6 +6,8 @@ public class Clock : RoomObject, IObjectFunction
     [SerializeField] private float timeScale = 3;
     [SerializeField] private float coolDownTime = 10f;
     [SerializeField] private AudioClip sound;
+    [SerializeField] private Sprite enabledSprite, disabledSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private Coroutine activeCoroutine;
 
     private bool coolDown = false;
@@ -27,6 +29,7 @@ public class Clock : RoomObject, IObjectFunction
 
         Time.timeScale = 1;
         coolDown = false;
+        spriteRenderer.sprite = enabledSprite;
     }
 
     private IEnumerator SpeedUp(int time)
@@ -36,8 +39,10 @@ public class Clock : RoomObject, IObjectFunction
         SoundManager.instance.PlaySound(sound, 0);
         yield return new WaitForSeconds(time);
         Time.timeScale = 1;
+        spriteRenderer.sprite = disabledSprite;
 
         yield return new WaitForSeconds(coolDownTime);
         coolDown = false;
+        spriteRenderer.sprite = enabledSprite;
     }
 }

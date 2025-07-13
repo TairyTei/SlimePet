@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 8690462252592638639, guid: 497562e0e34901d459bc489d66e70503, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,11 +165,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 8690462252592638639, guid: 497562e0e34901d459bc489d66e70503, type: 3}
-  nameOfObject: Sushi
-  descriptionOfObject: "\u041A\u0443\u0448\u0430\u043D\u044C\u0435"
+  id: 
+  namePath: 
   price: 3
   tags:
   - food
+  temporaryTags: []
   interactCursorSprite: {fileID: 8589531035368735815, guid: c453a742052200e4cb85d20601bef968, type: 3}
   overlookMonologues:
   - {fileID: 11400000, guid: 7f7825e7a6e5bf64fa067eed9567efd5, type: 2}
@@ -177,6 +178,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7247c6ec45827554cb274b2a4d7fd732, type: 2}
   - {fileID: 11400000, guid: 10d72f9c989debd49915b6528256963a, type: 2}
   - {fileID: 11400000, guid: e7f5d1eabe3d98a46b9ec3b3ae90f71d, type: 2}
+  spawnMonologues: []
   satiety: 3
   love: 1.5
   poopiness: 1.5

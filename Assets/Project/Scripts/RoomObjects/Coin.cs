@@ -13,7 +13,7 @@ public class Coin : RoomObject, IObjectFunction
     {
         Pet.Instance.Stats.Coins = Pet.Instance.Stats.Coins + count;
         SoundManager.instance.PlaySound(coinSound, 0.2f, SoundType.Main);
-        Destroy(gameObject);
+        DestroyRoomObject(this);
     }
 
 }

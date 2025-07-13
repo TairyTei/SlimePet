@@ -11,6 +11,8 @@ public class MusicPlayer : MonoBehaviour, IInitializable
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private Slider trackProgress;
+    [SerializeField] private Image playButtonSpriteRenderer;
+    [SerializeField] private Sprite playButtonEnabledSprite, playButtonDisabledSprite;
     [SerializeField] private GameObject trackButtonPrefab;
     [SerializeField] private Transform parent;
     [SerializeField] private List<AudioClip> trackList = new List<AudioClip>();
@@ -18,12 +20,17 @@ public class MusicPlayer : MonoBehaviour, IInitializable
     private List<TrackButton> buttons = new List<TrackButton>();
     [SerializeField] private AudioSource source;
     [SerializeField] private Animator radioAnimator;
+    [SerializeField] private ParticleSystem particles;
     private bool isPause = false;
     private bool isOpened = false;
 
     public void Initialize()
     {
         SettingsMenu.Instance.OnSettingsUpdated += OnSettingsUpdated;
+        if (SaveManger.IsItFirstLaunch)
+        {
+            PlayerPrefs.SetInt("IsSoundTrack" + trackList[0].name + "Enabled", 1);
+        }
     }
     private void OnSettingsUpdated() {
         Settings settings = SettingsManager.insntace.Settings;
@@ -158,6 +165,8 @@ public class MusicPlayer : MonoBehaviour, IInitializable
         source.Play();
         title.text = trackList[id].name;
         radioAnimator.SetBool("Dance", true);
+        playButtonSpriteRenderer.sprite = playButtonEnabledSprite;
+        particles.Play();
     }
     public void PlayTrack(AudioClip audioClip)
     {
@@ -173,11 +182,15 @@ public class MusicPlayer : MonoBehaviour, IInitializable
         {
             source.Pause();
             radioAnimator.SetBool("Dance", false);
+            playButtonSpriteRenderer.sprite = playButtonDisabledSprite;
+            particles.Stop();
         }
         else
         {
             source.Play();
             radioAnimator.SetBool("Dance", true);
+            playButtonSpriteRenderer.sprite = playButtonEnabledSprite;
+            particles.Play();
         }
     }
     public void MoveUp(AudioClip clip)

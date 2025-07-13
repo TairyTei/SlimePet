@@ -5,7 +5,7 @@ public class SwimTask : Task
     private bool willEnd = false;
     private const float cleanSpeed = 0.6f;
     RoomObject swimmingPool;
-    public SwimTask(string taskName, float timeLimit, bool willEnd) : base(taskName, timeLimit)
+    public SwimTask(float timeLimit, bool willEnd) : base("swim", timeLimit)
     {
         this.willEnd = willEnd;
         swimmingPool = FurnitureBox.instance.SwimmingPool;
@@ -58,7 +58,6 @@ public class SwimTask : Task
     }
     public override void TaskEnd()
     {
-        Debug.Log("Task: \"" + TaskName + "\" is completed");
         Pet.Instance.Animator.SetBool("Swim", false);
         //ParticleManager.Instance.Sleep.Stop();
     }

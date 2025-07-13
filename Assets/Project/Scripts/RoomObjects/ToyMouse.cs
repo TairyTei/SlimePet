@@ -7,6 +7,7 @@ public class ToyMouse : RoomObject, IObjectFunction
     [SerializeField] private float maxTargetDistance = 2f;
     [SerializeField] private float avoidPetRadius = 2.5f;
     [SerializeField] private Transform spriteTransform;
+    [SerializeField] private AudioClip startSound; 
     private Animator _animator;
     private Animator animator
     {
@@ -48,6 +49,7 @@ public class ToyMouse : RoomObject, IObjectFunction
         PickNewTarget();
         waitTimer = waitAtPointTime;
         animator.SetBool("IsRunning", true);
+        SoundManager.instance.PlaySound(startSound, 0.1f, SoundType.Main);
     }
 
     public void StopRunning()
@@ -82,7 +84,8 @@ public class ToyMouse : RoomObject, IObjectFunction
 
     public void RMB_Click()
     {
-        if (Pet.Instance.TaskCount >= 3) return;
+        if (Pet.Instance.TaskCount >= 3
+        || Pet.Instance.GetActiveTask().TaskName == ObjectTask().TaskName) return;
 
         Pet.Instance.AddTask(ObjectTask(), 0);
         Pet.Instance.CancelBreak();

@@ -9,12 +9,14 @@ public class BuyFoodButton : MonoBehaviour {
     [SerializeField] private Image icon;
     [SerializeField] private GameObject lockPanel;
     [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private AudioClip buySound;
+    [SerializeField] private AudioClip cancelSound;
 
 
     public void UpdateButton()
     {
         icon.sprite = foodPrefab.icon;
-        
+
         isItBought = PlayerPrefs.GetInt("IsFoodBought_" + foodPrefab.name) == 1 ? true : false;
         if (foodPrefab.price <= 0) isItBought = true;
 
@@ -41,6 +43,11 @@ public class BuyFoodButton : MonoBehaviour {
         {
             Pet.Instance.Stats.Coins -= foodPrefab.price;
             PlayerPrefs.SetInt("IsFoodBought_" + foodPrefab.name, 1);
+            SoundManager.instance.PlaySound(buySound, 0, SoundType.System);
+        }
+        else
+        {
+            SoundManager.instance.PlaySound(cancelSound, 0, SoundType.System);
         }
         UpdateButton();
     }

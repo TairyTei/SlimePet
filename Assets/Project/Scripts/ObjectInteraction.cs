@@ -37,7 +37,16 @@ public class ObjectInteraction : MonoBehaviour
             return;
         }
 
-        Collider2D newCollider = Physics2D.OverlapCircle(mousePos, 0.2f);
+        Collider2D newCollider = null;
+        Collider2D[] results = Physics2D.OverlapCircleAll(mousePos, 0.2f);
+        for (int i = 0; i < results.Length; i++)
+        {
+            if (results[i].gameObject != DraggedObject)
+            {
+                newCollider = results[i]; 
+                break;
+            }
+        }
         if (newCollider == null && colliderUnderCursor != null
         || newCollider != null && colliderUnderCursor == null
         || newCollider != colliderUnderCursor)
@@ -62,14 +71,15 @@ public class ObjectInteraction : MonoBehaviour
         if (WindowBorderCollider.instance.isInBounds(mousePos))
             DraggedObject.transform.position = mousePos + mouseOffset;
         Vector2 deltaPos = (Vector2)DraggedObject.transform.position - draggedObjectOldPos;
+        
         if (!onPet && CheckPlayer())
         {
-                onPet = true;
-                if (DraggedObject.GetComponent<FoodObject>() && Pet.Instance.Stats.Satiety < 10)
-                {
-                    Pet.Instance.AddIdleRequest("Feed");
-                    Pet.Instance.Animator.SetBool("IsMouthOpened", true);
-                }
+            onPet = true;
+            if (DraggedObject.GetComponent<FoodObject>() && Pet.Instance.Stats.Satiety < 10)
+            {
+                Pet.Instance.AddIdleRequest("Feed");
+                Pet.Instance.Animator.SetBool("IsMouthOpened", true);
+            }
         }
         if (onPet && !CheckPlayer())
         {
@@ -84,9 +94,15 @@ public class ObjectInteraction : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (onPet && DraggedObject.GetComponent<FoodObject>())
+
+            RoomObject draggedRoomObject = null;
+            if (DraggedObject.GetComponent<RoomObject>())
             {
-                FoodObject food = DraggedObject.GetComponent<FoodObject>();
+                draggedRoomObject = DraggedObject.GetComponent<RoomObject>();
+            }
+            if (onPet && draggedRoomObject != null)
+            {
+                FoodObject food = (FoodObject)draggedRoomObject;
                 food.Put();
                 if (Pet.Instance.IsThereIdleRequest("Feed"))
                 {

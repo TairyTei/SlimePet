@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: -5620055989646091708, guid: 116da758757fdf2468f35c6aac6e1280, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   price: 100
   tags:
   - Poop
+  temporaryTags: []
   interactCursorSprite: {fileID: -6438760948649367242, guid: c453a742052200e4cb85d20601bef968, type: 3}
   overlookMonologues:
   - {fileID: 11400000, guid: 32d64682e9dd4ad4c8bd99729f3e7cb5, type: 2}

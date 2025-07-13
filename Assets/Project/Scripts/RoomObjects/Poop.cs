@@ -31,7 +31,7 @@ public class Poop : RoomObject, IObjectFunction
             if (regenerationCoroutine != null)
                 StopCoroutine(regenerationCoroutine);
 
-            Destroy(gameObject);
+            DestroyRoomObject(this);
         }
     }
     private void Rescale()
