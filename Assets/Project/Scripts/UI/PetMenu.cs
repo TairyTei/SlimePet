@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PetMenu : MonoBehaviour
 {
     public RectTransform menu;
+    [SerializeField] private float autoCloseIn = 10;
     [SerializeField] private Animator optionsAnimator;
     [SerializeField] private Animator variablesAnimator;
     [SerializeField] private AudioClip openSound, closeSound;
@@ -23,6 +24,8 @@ public class PetMenu : MonoBehaviour
     private bool isOpened;
     public bool IsOpened { get { return isOpened; } }
     public static PetMenu instance;
+    private IEnumerator currentAnimCoroutine;
+    private IEnumerator autoClose;
 
     void Start()
     {
@@ -56,7 +59,13 @@ public class PetMenu : MonoBehaviour
             Close();
             return;
         }
+
+        if (pet.TaskCount != 0 && !pet.GetActiveTask().IsOpenMenuAllowed) return;
+
         BedMenu.instance.Close();
+
+        if (currentAnimCoroutine != null)
+            StopCoroutine(currentAnimCoroutine);
 
         menu.transform.position = (Vector2)Camera.main.WorldToScreenPoint(pet.transform.position) + offset;
         Options.SetActive(true);
@@ -67,6 +76,7 @@ public class PetMenu : MonoBehaviour
         UpdateStatSliders();
         optionsAnimator.SetBool("IsOpened", true);
         variablesAnimator.SetBool("IsOpened", true);
+        StartAutoClose();
         SoundManager.instance.PlaySound(openSound, 0.1f, SoundType.System);
     }
     public void OpenFoodList()
@@ -77,14 +87,21 @@ public class PetMenu : MonoBehaviour
             button.UpdateButton();
         }
         FoodList.SetActive(true);
+        StartAutoClose();
     }
     public void Close()
     {
         if (!isOpened) return;
-        
-        StartCoroutine(IECloseAnim());
+
+        currentAnimCoroutine = IECloseAnim();
+        StartCoroutine(currentAnimCoroutine);
+
         pet.RemoveIdleRequest("PetMenu");
         isOpened = false;
+        if (autoClose != null)
+        {
+            StopCoroutine(autoClose);
+        }
         SoundManager.instance.PlaySound(closeSound, 0.1f, SoundType.System);
     }
     IEnumerator IECloseAnim()
@@ -93,5 +110,19 @@ public class PetMenu : MonoBehaviour
         variablesAnimator.SetBool("IsOpened", false);
         yield return new WaitForSeconds(0.25f);
         menu.gameObject.SetActive(false);
+    }
+    public void StartAutoClose()
+    {
+        if (autoClose != null)
+        {
+            StopCoroutine(autoClose);
+        }
+        autoClose = IAutoClose();
+        StartCoroutine(autoClose);
+    }
+    IEnumerator IAutoClose()
+    {
+        yield return new WaitForSeconds(autoCloseIn);
+        Close();
     }
 }

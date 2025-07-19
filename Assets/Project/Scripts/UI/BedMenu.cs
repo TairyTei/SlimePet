@@ -15,6 +15,7 @@ public class BedMenu : MonoBehaviour
     public bool isOpened;
     private Pet pet;
     public static BedMenu instance;
+    private IEnumerator currentAnimCoroutine;
     
     void Start()
     {
@@ -36,6 +37,12 @@ public class BedMenu : MonoBehaviour
             Close();
             return;
         }
+
+        if (pet.TaskCount != 0 && !pet.GetActiveTask().IsOpenMenuAllowed) return;
+
+        if(currentAnimCoroutine != null)
+        StopCoroutine(currentAnimCoroutine);
+
         PetMenu.instance.Close();
 
         menu.transform.position = (Vector2)Camera.main.WorldToScreenPoint(Bed.instance.transform.position) + offset;
@@ -50,7 +57,8 @@ public class BedMenu : MonoBehaviour
         if (!isOpened) return;
 
         isOpened = false;
-        StartCoroutine(IECloseAnim());
+        currentAnimCoroutine = IECloseAnim();
+        StartCoroutine(currentAnimCoroutine);
         SoundManager.instance.PlaySound(closeSound, 0.1f, SoundType.System);
     }
     IEnumerator IECloseAnim()

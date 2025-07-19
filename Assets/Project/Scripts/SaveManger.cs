@@ -7,6 +7,7 @@ using UnityEngine;
 public class SaveManger : MonoBehaviour, IInitializable
 {
     [SerializeField] private float autosaveRate;
+    [SerializeField] private Bed bed;
     public static SaveManger Instance { get; private set; }
     private static bool isItirstLaunch = true;
     public static bool IsItFirstLaunch { get { return isItirstLaunch; } }
@@ -88,6 +89,7 @@ public class SaveManger : MonoBehaviour, IInitializable
         petStats.Cheerfulness = PlayerPrefs.GetFloat("Cheerfulness");
         petStats.Happiness = PlayerPrefs.GetFloat("Happiness");
         petStats.Expirience = PlayerPrefs.GetInt("Expirience");
+        petStats.Level = PetStats.CalculateLevelFromExp(petStats.Expirience);
         petStats.StoriesQueue = PlayerPrefs.GetInt("StoriesInQueue");
         
         System.DateTime now = System.DateTime.Now;
@@ -111,9 +113,9 @@ public class SaveManger : MonoBehaviour, IInitializable
 
         foreach (RoomObject obj in roomObjects)
         {
-            
+
             bool isInRoom = PlayerPrefs.GetInt("Is" + obj.id + "InRoom") == 1;
-             
+
             Debug.Log(obj.id);
             Debug.Log(isInRoom);
             Debug.Log(PlayerPrefs.GetInt("Is" + obj.id + "InRoom"));
@@ -128,8 +130,10 @@ public class SaveManger : MonoBehaviour, IInitializable
 
             obj.gameObject.SetActive(true);
             obj.Put();
-            
+
         }
+        Vector2 bedPosition = new Vector2(PlayerPrefs.GetFloat("XPosOfBed"), PlayerPrefs.GetFloat("YPosOfBed"));
+        bed.transform.position = bedPosition;
     }
     private void SaveFurniture()
     {
@@ -145,6 +149,8 @@ public class SaveManger : MonoBehaviour, IInitializable
                 PlayerPrefs.SetFloat("YPosOf" + obj.id, obj.transform.position.y);
             }
         }
+        PlayerPrefs.SetFloat("XPosOfBed", bed.transform.position.x);
+        PlayerPrefs.SetFloat("YPosOfBed", bed.transform.position.y);
     }
     
     private static void FirstLaunch()

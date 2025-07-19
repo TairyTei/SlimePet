@@ -1,1 +1,1 @@
-Slime catches the cursor
+Slime catches cursor

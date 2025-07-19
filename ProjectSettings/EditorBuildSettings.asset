@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Project/Scenes/PixelEditor.unity
+    guid: aa7003f91778be04ca9070e8e661c08e
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 119883cb205e86145bdee3e9a1891ed2, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: b36a0fd798a62814da73cd9b5a423a3e, type: 2}

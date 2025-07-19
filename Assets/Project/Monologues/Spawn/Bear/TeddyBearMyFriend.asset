@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: "\u041C\u0438\u0448\u043A\u0430, \u0434\u0440\u0443\u0433 \u043C\u043E\u0439!"
-    textPath: Monologues\Spawn/Clock/TickTock
+    textPath: Monologues\Spawn/Bear/TeddyBearMyFriend

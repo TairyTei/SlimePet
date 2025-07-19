@@ -9,7 +9,7 @@ public class TickController : MonoBehaviour, IInitializable
     public event Action OnLargeTick;
 
     public const float smallTick = 15;
-    public const float largeTick = 900;
+    public const float largeTick = 600;
 
     public static TickController Instance { get; private set; }
     public void Initialize()

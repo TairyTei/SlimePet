@@ -8,7 +8,17 @@ public class GuideBook : MonoBehaviour
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject previousButton;
     [SerializeField] private GameObject[] pages;
+    [SerializeField] private AudioClip switchPageSound;
     private int currentPage = 0;
+
+    void Start()
+    {
+        if (SaveManger.IsItFirstLaunch)
+        {
+            Open();
+        }
+    }
+    
     public void Open()
     {
         OpenPage(0);
@@ -31,17 +41,27 @@ public class GuideBook : MonoBehaviour
         bool previousButtonActive = currentPage != 0;
         previousButton.SetActive(previousButtonActive);
 
-        bool nextButtoActive = currentPage < pages.Length -1;
+        bool nextButtoActive = currentPage < pages.Length - 1;
         nextButton.SetActive(nextButtoActive);
     }
     public void NextPage()
     {
-        if (currentPage < pages.Length -1)
+        if (currentPage < pages.Length - 1)
             OpenPage(currentPage + 1);
+
+        if (switchPageSound != null)
+        {
+            SoundManager.instance.PlaySound(switchPageSound, 0, SoundType.System);
+        }
     }
     public void PreviousPage()
     {
         if (currentPage > 0)
             OpenPage(currentPage - 1);
+
+        if (switchPageSound != null)
+        {
+            SoundManager.instance.PlaySound(switchPageSound, 0, SoundType.System);
+        }
     }
 }

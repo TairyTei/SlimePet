@@ -164,7 +164,10 @@ public class MusicPlayer : MonoBehaviour, IInitializable
         source.clip = trackList[id];
         source.Play();
         title.text = trackList[id].name;
-        radioAnimator.SetBool("Dance", true);
+        if (radioAnimator.gameObject.activeSelf)
+        {
+            radioAnimator.SetBool("Dance", true);
+        }
         playButtonSpriteRenderer.sprite = playButtonEnabledSprite;
         particles.Play();
     }
@@ -181,14 +184,20 @@ public class MusicPlayer : MonoBehaviour, IInitializable
         if (isPause)
         {
             source.Pause();
-            radioAnimator.SetBool("Dance", false);
+            if (radioAnimator.gameObject.activeSelf)
+            {
+                radioAnimator.SetBool("Dance", false);
+            }
             playButtonSpriteRenderer.sprite = playButtonDisabledSprite;
             particles.Stop();
         }
         else
         {
             source.Play();
-            radioAnimator.SetBool("Dance", true);
+            if (radioAnimator.gameObject.activeSelf)
+            {
+                radioAnimator.SetBool("Dance", true);
+            }
             playButtonSpriteRenderer.sprite = playButtonEnabledSprite;
             particles.Play();
         }

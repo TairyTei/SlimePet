@@ -15,7 +15,7 @@ public class SwimmingPool : RoomObject, IObjectFunction
     public void RMB_Click()
     {
         if (Pet.Instance.TaskCount >= 3
-        || Pet.Instance.GetActiveTask().TaskName == ObjectTask().TaskName) return;
+        || Pet.Instance.TaskCount > 0 && Pet.Instance.GetActiveTask().TaskName == ObjectTask().TaskName) return;
 
         Task swim = new SwimTask( -1, false);
         Pet.Instance.AddTask(swim, 0);    

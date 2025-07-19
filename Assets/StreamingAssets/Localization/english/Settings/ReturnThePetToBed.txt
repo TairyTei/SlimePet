@@ -1,1 +1,1 @@
-Return the pet to bed
+Return pet to the bed

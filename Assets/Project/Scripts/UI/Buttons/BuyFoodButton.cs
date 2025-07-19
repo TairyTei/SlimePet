@@ -35,6 +35,7 @@ public class BuyFoodButton : MonoBehaviour {
         {
             Buy();
         }
+        PetMenu.instance.StartAutoClose();
     }
 
     private void Buy()

@@ -8,13 +8,22 @@ public static class ExternalTextLoader
         string currLang = LocalizationSystem.CurrentLanguage.id;
         string fullPath = Path.Combine(Application.streamingAssetsPath, "Localization", currLang, relativePath + ".txt");
         //Debug.Log(fullPath);
+        if (File.Exists(fullPath))
+        {
+            return File.ReadAllText(fullPath);
+        }
+
+        /*
+        fullPath = Path.Combine(Application.streamingAssetsPath, "Localization", LocalizationSystem.standardLanguage, relativePath + ".txt");
+
         if (!File.Exists(fullPath))
         {
-            Debug.LogWarning($"Text file not found: {fullPath}");
-            return "MISSING_TEXT :D";
+            return File.ReadAllText(fullPath);
         }
+        */
         
-        return File.ReadAllText(fullPath);
+        Debug.LogWarning($"Text file not found: {fullPath}");
+        return relativePath;
     }
 
 #if UNITY_EDITOR

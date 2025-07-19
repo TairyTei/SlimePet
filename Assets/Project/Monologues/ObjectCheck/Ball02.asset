@@ -15,5 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u0411\u0440\u043E\u0441\u0430\u0439 \u043C\u043D\u0435 \u043C\u044F\u0447\u0438\u043A,
       \u044F \u043F\u043E\u0439\u043C\u0430\u044E!"
-    textPath: 
+    textPath: Monologues\ObjectCheck/Ball02
   tag: ball

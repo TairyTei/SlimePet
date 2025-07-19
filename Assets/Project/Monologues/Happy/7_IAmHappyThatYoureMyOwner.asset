@@ -15,6 +15,6 @@ MonoBehaviour:
   monologue:
     text: "\u042F \u0440\u0430\u0434, \u0447\u0442\u043E \u0442\u044B \u043C\u043E\u0439
       \u0445\u043E\u0437\u044F\u0438\u043D!"
-    time: 4
+    textPath: Monologues\Happy/7_IAmHappyThatYoureMyOwner
   minValue: 5
   maxValue: 10

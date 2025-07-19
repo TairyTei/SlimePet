@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monologue:
     text: "\u0423\u0440\u0430, \u0431\u043E\u0446\u043C\u0430\u043D \u043C\u0438\u0448\u043A\u0430!"
-    textPath: Monologues\Spawn/Clock/DoesItInterfereWithTime
+    textPath: Monologues\Spawn/Bear/HoorayBotswainTeddyBear

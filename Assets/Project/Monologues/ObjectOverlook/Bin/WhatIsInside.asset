@@ -15,5 +15,4 @@ MonoBehaviour:
   monologue:
     text: "\u0418\u043D\u0442\u0435\u0440\u0435\u0441\u043D\u043E, \u0430 \u0447\u0442\u043E
       \u0442\u0430\u043C \u0432\u043D\u0443\u0442\u0440\u0438\u2026"
-    textPath: Monologues\ObjectOverlook/Bed/IGetDirtyAndHungryFasterWhenISleep
-    time: 3
+    textPath: Monologues\ObjectOverlook/Bin/WhatIsInside

@@ -9,7 +9,8 @@ public class MinigameAim : Task
     private MinigameManager minigameManager;
     private const float maxTargetDistance = 4f;
     private const float avoidCursorRadius = 4.5f;
-    public override bool IsDragAllowed { get { return false; } }
+    public override bool IsDragAllowed => false;
+    public override bool IsOpenMenuAllowed => false;
     public MinigameAim(string taskName, float timeLimit, MinigameManager minigameManager) : base(taskName, timeLimit)
     {
         this.minigameManager = minigameManager;
@@ -79,7 +80,8 @@ public class MinigameAim : Task
     {
         Pet.Instance.SpeedMultiplier = 1;
         Pet.Instance.Stats.Coins += points;
-        Pet.Instance.Stats.Expirience += points;
+        int petExpirience = Pet.Instance.Stats.Expirience;
+        Pet.Instance.Stats.SetExpirienceWithLevel(petExpirience + points);
 
         CursorSprite.Instance.RemoveSprite(minigameManager.AimCursorSprite);
 

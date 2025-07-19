@@ -1,0 +1,1 @@
+The left mouse button is for dragging objects, while the right button handles interactive clicks.

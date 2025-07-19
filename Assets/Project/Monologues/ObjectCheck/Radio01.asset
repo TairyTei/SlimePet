@@ -15,5 +15,5 @@ MonoBehaviour:
   monologue:
     text: "\u0421\u0434\u0435\u043B\u0430\u0439 \u043C\u0443\u0437\u044B\u043A\u0443
       \u043F\u043E\u0433\u0440\u043E\u043C\u0447\u0435! ^w^"
-    textPath: 
+    textPath: Monologues\ObjectCheck/Radio01
   tag: radio

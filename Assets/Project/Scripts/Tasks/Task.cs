@@ -9,7 +9,8 @@ public abstract class Task
     {
         get { return taskName; }
     }
-    public virtual bool IsDragAllowed { get{ return true; }}
+    public virtual bool IsDragAllowed => true;
+    public virtual bool IsOpenMenuAllowed => true;
 
     public bool isStarted = false;
     protected float createTime;

@@ -4,7 +4,9 @@ public class MinigameVictim : Task
 {
     private float time = 0;
     MinigameManager minigameManager;
-    public override bool IsDragAllowed { get { return false; } }
+    public override bool IsDragAllowed => false;
+    public override bool IsOpenMenuAllowed => false;
+
     public MinigameVictim(string taskName, float timeLimit, MinigameManager minigameManager) : base(taskName, timeLimit)
     {
         this.minigameManager = minigameManager;
@@ -41,7 +43,8 @@ public class MinigameVictim : Task
     {
         Pet.Instance.SpeedMultiplier = 1;
         Pet.Instance.Stats.Coins += Mathf.FloorToInt(time / 10);
-        Pet.Instance.Stats.Expirience += (int)(time / 10);
+        int petExpirience = Pet.Instance.Stats.Expirience;
+        Pet.Instance.Stats.SetExpirienceWithLevel(petExpirience + (int)(time / 10));
 
         if (Mathf.FloorToInt(time) > PlayerPrefs.GetInt("Victim_Record"))
         {

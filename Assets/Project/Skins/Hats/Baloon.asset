@@ -15,7 +15,7 @@ MonoBehaviour:
   hatID: Baloon
   namePath: Hats\Baloon
   hatSprite: {fileID: 1708771447, guid: 497562e0e34901d459bc489d66e70503, type: 3}
-  price: 175
+  price: 0
   isVisible: 0
   isGift: 1
   monologues: []

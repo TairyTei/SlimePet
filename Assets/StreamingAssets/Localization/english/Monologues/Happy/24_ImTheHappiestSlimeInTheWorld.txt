@@ -1,1 +1,1 @@
-$ pet_name - the happiest slime in the world!
+$pet_name – is the happiest slime in the world!

@@ -56,8 +56,8 @@ public class VacuumCleaner : RoomObject
 
         if (Vector2.Distance(transform.position, target.position) < 0.5f)
         {
-            FurnitureBox.instance.RemoveFurnitureFromRoom(target.gameObject.GetComponent<RoomObject>());
-            Destroy(target.gameObject);
+            RoomObject targetRoomObj = target.gameObject.GetComponent<RoomObject>();
+            RoomObject.DestroyRoomObject(targetRoomObj);
             target = null;
             SoundManager.instance.PlaySound(suckSound, 0.3f, SoundType.Main);
             RoomCheck();

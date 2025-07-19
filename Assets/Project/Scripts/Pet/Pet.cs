@@ -126,7 +126,7 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
         else
         {
             Stats.Happiness = Stats.Happiness + 0.5f;
-            Stats.Expirience += 3;
+            Pet.Instance.Stats.SetExpirienceWithLevel(Stats.Expirience + 1);
         }
 
         if (Stats.StoriesQueue > 0 && tasks.Count == 0 || Stats.StoriesQueue > 0 && tasks[0].TaskName != "Story")

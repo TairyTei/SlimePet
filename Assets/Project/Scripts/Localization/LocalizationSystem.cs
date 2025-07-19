@@ -7,6 +7,7 @@ public static class LocalizationSystem
     private static List<LanguageProfile> availableLanguages = new List<LanguageProfile>();
     private static LanguageProfile currentLanguage;
     public static LanguageProfile CurrentLanguage {get{ return currentLanguage; }}
+    public const string standardLanguage = "russian";
     
     public static event Action OnLanguageChanged;
      public static event Action OnLanguagesScanned;
@@ -21,7 +22,7 @@ public static class LocalizationSystem
         }
         else
         {
-            SetLanguage("russian");
+            SetLanguage(standardLanguage);
         }
     }
 

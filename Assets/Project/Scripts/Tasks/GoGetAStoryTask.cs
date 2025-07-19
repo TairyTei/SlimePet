@@ -6,14 +6,14 @@ public class GoGetAStoryTask : Task
     private float startTime;
     private Vector2 targetPos;
     private bool isPetOnThePoint = false;
-    private const float standardJourneyTime = 10;
+    private const float standardJourneyTime = 30;
     private float journeyTime;
     public override bool IsDragAllowed => false;
 
     public GoGetAStoryTask(string taskName, float timeLimit) : base(taskName, timeLimit)
     {
         startTime = Time.time;
-        journeyTime = standardJourneyTime * Pet.Instance.Stats.Level;
+        journeyTime = standardJourneyTime + 10 * Pet.Instance.Stats.Level;
     }
     public override void TaskStart()
     {

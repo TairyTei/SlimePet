@@ -85,7 +85,7 @@ public class ToyMouse : RoomObject, IObjectFunction
     public void RMB_Click()
     {
         if (Pet.Instance.TaskCount >= 3
-        || Pet.Instance.GetActiveTask().TaskName == ObjectTask().TaskName) return;
+        || Pet.Instance.TaskCount > 0 && Pet.Instance.GetActiveTask().TaskName == ObjectTask().TaskName) return;
 
         Pet.Instance.AddTask(ObjectTask(), 0);
         Pet.Instance.CancelBreak();

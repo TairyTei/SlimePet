@@ -31,6 +31,7 @@ public class CatchToyMouseTask : DynamicTargetTask
 
     public override void TaskFail()
     {
+        base.TaskFail();
         toyMouse.StopRunning();
     }
 

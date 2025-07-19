@@ -54,6 +54,7 @@ public class SwimTask : Task
     public override void TaskInterrupt()
     {
         Pet.Instance.Animator.SetBool("Swim", false);
+        subtasks.Clear();
         //ParticleManager.Instance.Sleep.Stop();
     }
     public override void TaskEnd()

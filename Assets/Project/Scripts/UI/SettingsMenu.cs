@@ -100,7 +100,7 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         }
         SettingsManager.insntace.SetFrameRate(frameRate);
 
-        if(OnSettingsUpdated != null)
+        if (OnSettingsUpdated != null)
             OnSettingsUpdated.Invoke();
     }
     public void ChangePinWindowOnTop()
@@ -137,5 +137,9 @@ public class SettingsMenu : MonoBehaviour, IInitializable
     {
         string langID = LocalizationSystem.GetAvailableLanguages()[languageChoise.value].id;
         LocalizationSystem.SetLanguage(langID);
+    }
+    public void OpenEditor()
+    {
+        SceneManager.LoadScene("PixelEditor");
     }
 }

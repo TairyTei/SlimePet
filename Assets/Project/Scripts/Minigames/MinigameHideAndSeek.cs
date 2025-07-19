@@ -8,7 +8,8 @@ public class MinigameHideAndSeek : Task
     private float timeToFind;
     private bool hidden = false;
     private MinigameManager minigameManager;
-    public override bool IsDragAllowed { get { return false; } }
+    public override bool IsDragAllowed => false;
+    public override bool IsOpenMenuAllowed => false;
     public MinigameHideAndSeek(string taskName, float timeLimit, MinigameManager minigameManager) : base(taskName, timeLimit)
     {
         this.minigameManager = minigameManager;
@@ -32,6 +33,7 @@ public class MinigameHideAndSeek : Task
     {
         countOfCatches++;
         minigameManager.SetValue_Score(countOfCatches);
+        SoundManager.instance.PlaySound(minigameManager.HitSound, 0.3f, SoundType.Main);
         Pet.Instance.StartCoroutine(Hide());
     }
     public override void TaskStart()
@@ -63,7 +65,8 @@ public class MinigameHideAndSeek : Task
     public override void TaskEnd()
     {
         Pet.Instance.Stats.Coins += countOfCatches;
-        Pet.Instance.Stats.Expirience += countOfCatches * 2;
+        int petExpirience = Pet.Instance.Stats.Expirience;
+        Pet.Instance.Stats.SetExpirienceWithLevel(petExpirience + countOfCatches * 2);
         minigameManager.SetActive_HideAndSeekUI(false);
         minigameManager.SetActive_MinigameUI(false);
 

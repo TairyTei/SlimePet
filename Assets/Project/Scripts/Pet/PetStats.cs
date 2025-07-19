@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,28 +17,38 @@ public class PetStats
     [SerializeField] private float happiness = 10;
     public float Happiness { get { return happiness; } set { happiness = Mathf.Clamp(value, 0, 10); } }
     [SerializeField] private int level = 0;
-    public int Level { get { return level; } }
+    public int Level { get { return level; } set { level = value; }}
     private const float lvlMultiplier = 0.2f;
     [SerializeField] private int expirience = 0;
+
     public int Expirience
     {
         get { return expirience; }
         set
         {
-            SetExpirience(value);
+            expirience = value;
         }
     }
     [SerializeField] private int coins = 0;
-    public int Coins { get { return coins; } set { coins = value; } }
+    public int Coins
+    {
+        get { return coins; }
+        set
+        {
+            coins = value;
+            if (OnCoinsUpdated != null) OnCoinsUpdated.Invoke();
+        }
+    }
+      public event Action OnCoinsUpdated;
     private int storiesQueue = 0;
     public int StoriesQueue { get { return storiesQueue; } set { storiesQueue = value; } }
     [SerializeField] private float poopBar = 0;
     public float PoopBar { get { return poopBar; } set { poopBar = value; } }
-    private void SetExpirience(int newValue)
+    public void SetExpirienceWithLevel(int newExpirience)
     {
-        expirience = newValue;
+        expirience = newExpirience;
 
-        int newLevel = CalculateLevelFromExp(newValue);
+        int newLevel = CalculateLevelFromExp(newExpirience);
         if (newLevel != level)
         {
             SetLevel(newLevel);

@@ -15,7 +15,9 @@ MonoBehaviour:
   hatID: ChemistryTeacher
   namePath: Hats\ChemistryTeacher
   hatSprite: {fileID: -2029248112, guid: 497562e0e34901d459bc489d66e70503, type: 3}
-  price: 150
+  price: 400
   isVisible: 1
   isGift: 0
-  monologues: []
+  monologues:
+  - {fileID: 11400000, guid: ab47ee55d64443643aeffd1ad16221c8, type: 2}
+  - {fileID: 11400000, guid: dbd18d40342dfde4f9e2c13cc2b3fa86, type: 2}

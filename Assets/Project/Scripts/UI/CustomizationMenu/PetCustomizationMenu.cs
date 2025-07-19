@@ -11,7 +11,6 @@ public class PetCustomizationMenu : MonoBehaviour
     public Image hatImage;
     public TMP_InputField nameField;
     public TextMeshProUGUI dateOfBirth;
-    public TextMeshProUGUI coinCount;
 
     public TextMeshProUGUI currentLevel;
     public TextMeshProUGUI nextLevel;
@@ -28,7 +27,6 @@ public class PetCustomizationMenu : MonoBehaviour
         PetStats stats = Pet.Instance.Stats;
 
         nameField.text = Pet.Instance.petName;
-        coinCount.text = stats.Coins + "c";
 
         DateTime createDate = Pet.Instance.CreateDate;
         int totalDays = (int)(DateTime.Now - createDate).TotalDays;

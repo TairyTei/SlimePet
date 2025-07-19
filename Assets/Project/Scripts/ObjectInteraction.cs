@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ObjectInteraction : MonoBehaviour
 {
@@ -22,7 +23,8 @@ public class ObjectInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (!Shower.Instance.IsOpened && !Pat.Instance.IsOpened)
+        if (!Shower.Instance.IsOpened
+        && !Pat.Instance.IsOpened)
         {
             Interaction();
         }
@@ -38,28 +40,30 @@ public class ObjectInteraction : MonoBehaviour
         }
 
         Collider2D newCollider = null;
-        Collider2D[] results = Physics2D.OverlapCircleAll(mousePos, 0.2f);
-        for (int i = 0; i < results.Length; i++)
+        if (!IsPointerOverUI())
         {
-            if (results[i].gameObject != DraggedObject)
+            Collider2D[] results = Physics2D.OverlapCircleAll(mousePos, 0.2f);
+            for (int i = 0; i < results.Length; i++)
             {
-                newCollider = results[i]; 
-                break;
+                if (results[i].gameObject != DraggedObject)
+                {
+                    newCollider = results[i];
+                    break;
+                }
             }
         }
-        if (newCollider == null && colliderUnderCursor != null
-        || newCollider != null && colliderUnderCursor == null
-        || newCollider != colliderUnderCursor)
-        {
-            ObjectUnderCursorChanged(colliderUnderCursor, newCollider);
-            colliderUnderCursor = newCollider;
-        }
+        if (newCollider != colliderUnderCursor)
+            {
+                ObjectUnderCursorChanged(colliderUnderCursor, newCollider);
+                colliderUnderCursor = newCollider;
+            }
+        
 
-        if (Input.GetMouseButtonDown(0) && colliderUnderCursor != null)
+        if (Input.GetMouseButtonDown(0) && colliderUnderCursor != null && !IsPointerOverUI())
         {
             LMB_Click();
         }
-        else if (Input.GetMouseButtonDown(1) && colliderUnderCursor != null)
+        else if (Input.GetMouseButtonDown(1) && colliderUnderCursor != null && !IsPointerOverUI())
         {
             RMB_Click();
         }
@@ -198,4 +202,5 @@ public class ObjectInteraction : MonoBehaviour
         }
         return false;
     }
+    bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
 }
