@@ -90,7 +90,7 @@ public class Bin : RoomObject, IObjectFunction
         }
         else
         {
-            Destroy(obj.gameObject);
+            RoomObject.DestroyRoomObject(obj);
         }
         SoundManager.instance.PlaySound(removeSound, 0.2f);
     }

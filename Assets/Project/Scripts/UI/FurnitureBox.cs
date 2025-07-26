@@ -11,6 +11,7 @@ public class FurnitureBox : MonoBehaviour, IInitializable
     public TextMeshProUGUI nameOfFurniture;
     //public TextMeshProUGUI descriptionOfFurniture;
     public GameObject priceOfFurniturePanel;
+    public TextMeshProUGUI countOfCoins;
     public TextMeshProUGUI priceOfFurniture;
     public TextMeshProUGUI buttonText;
     public Image furnitureImage;
@@ -18,14 +19,14 @@ public class FurnitureBox : MonoBehaviour, IInitializable
     public GameObject furnitureButtonPrefab;
 
     [SerializeField] private SwimmingPool swimmingPool;
-    public SwimmingPool SwimmingPool {get{ return swimmingPool; }}
+    public SwimmingPool SwimmingPool { get { return swimmingPool; } }
 
     public AudioClip buySound;
     public AudioClip cancelSound;
-    
+
     [SerializeField]
     private List<RoomObject> allFurniture = new List<RoomObject>();
-    public List<RoomObject> AllFurniture {get{ return allFurniture; }}
+    public List<RoomObject> AllFurniture { get { return allFurniture; } }
     [SerializeField] private List<string> randomTags = new List<string>();
     private List<RoomObject> furnitureInRoom = new List<RoomObject>();
     private RoomObject openedFurniture;
@@ -37,13 +38,16 @@ public class FurnitureBox : MonoBehaviour, IInitializable
     public void Initialize()
     {
         instance = this;
+        Pet.Instance.Stats.OnCoinsUpdated += UpdateCountOfCoins;
+        UpdateCountOfCoins();
     }
 
-    void Update()
+    void UpdateCountOfCoins()
     {
-
+        countOfCoins.text = Pet.Instance.Stats.Coins + "c";
     }
-    public void Open(){
+    public void Open()
+    {
         if (isOpened)
         {
             Close();
@@ -54,14 +58,18 @@ public class FurnitureBox : MonoBehaviour, IInitializable
         BedMenu.instance.Close();
         menu.SetActive(true);
     }
-    public void Close(){
+    public void Close()
+    {
         menu.SetActive(false);
     }
-    private void UpdateFurnitureList(){
-        foreach(Transform child in furnitureListParent){
+    private void UpdateFurnitureList()
+    {
+        foreach (Transform child in furnitureListParent)
+        {
             Destroy(child.gameObject);
         }
-        for(int i = 0; i < allFurniture.Count; i++){
+        for (int i = 0; i < allFurniture.Count; i++)
+        {
             GameObject createdButton = Instantiate(furnitureButtonPrefab, furnitureListParent);
             ChooseFunitureButton button = createdButton.GetComponent<ChooseFunitureButton>();
             button.Set(this, allFurniture[i]);
@@ -93,7 +101,7 @@ public class FurnitureBox : MonoBehaviour, IInitializable
             buttonText.text = buyText;
             priceOfFurniture.text = openedFurniture.price + "c";
             priceOfFurniturePanel.SetActive(true);
-        } 
+        }
     }
     public void Put(RoomObject roomObject)
     {
@@ -161,10 +169,12 @@ public class FurnitureBox : MonoBehaviour, IInitializable
             PlayerPrefs.SetInt("Is" + furniture.id + "InRoom", 0);
         }
     }
-    public RoomObject[] GetObjectsInRoom(){
+    public RoomObject[] GetObjectsInRoom()
+    {
         return furnitureInRoom.ToArray();
     }
-    public RoomObject[] GetObjectsWithTag(string tag){
+    public RoomObject[] GetObjectsWithTag(string tag)
+    {
         List<RoomObject> objects = new List<RoomObject>();
 
         foreach (RoomObject obj in furnitureInRoom)
@@ -178,5 +188,9 @@ public class FurnitureBox : MonoBehaviour, IInitializable
             }
         }
         return objects.ToArray();
+    }
+    void OnDestroy()
+    {
+        Pet.Instance.Stats.OnCoinsUpdated -= UpdateCountOfCoins;
     }
 }

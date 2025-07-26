@@ -12,10 +12,11 @@ public class Bed : RoomObject, IObjectFunction, IInitializable
     public void Initialize()
     {
         instance = this;
-        SettingsMenu.Instance.OnSettingsUpdated += OnSettingsUpdated;
+        SettingsManager.instance.OnSettingsUpdated += OnSettingsUpdated;
     }
-    private void OnSettingsUpdated() {
-        Settings settings = SettingsManager.insntace.Settings;
+    private void OnSettingsUpdated()
+    {
+        Settings settings = SettingsManager.instance.Settings;
         Task activeTask = Pet.Instance.GetActiveTask();
         bool isInStory = activeTask != null && activeTask.TaskName == "Story";
         storyMark.SetActive(isInStory && settings.displayStoryMark);
@@ -38,5 +39,9 @@ public class Bed : RoomObject, IObjectFunction, IInitializable
     public void ActivateStoryMark(bool isActive)
     {
         storyMark.SetActive(isActive);
+    }
+    void OnDestroy()
+    {
+        SettingsManager.instance.OnSettingsUpdated -= OnSettingsUpdated;
     }
 }

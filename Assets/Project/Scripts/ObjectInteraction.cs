@@ -104,7 +104,7 @@ public class ObjectInteraction : MonoBehaviour
             {
                 draggedRoomObject = DraggedObject.GetComponent<RoomObject>();
             }
-            if (onPet && draggedRoomObject != null)
+            if (onPet && draggedRoomObject != null && draggedRoomObject is FoodObject)
             {
                 FoodObject food = (FoodObject)draggedRoomObject;
                 food.Put();

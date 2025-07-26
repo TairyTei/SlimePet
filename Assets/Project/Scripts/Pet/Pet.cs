@@ -86,19 +86,20 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
     }
     private void OnSmallTick()
     {
+        float difficultyMultiplier = SettingsManager.instance.Settings.difficultyMultiplier;
         if (tasks.Count == 0 || GetActiveTask().taskName != "Sleep")
-            {
-                Stats.Satiety -= 0.25f;
-                Stats.Cleanliness -= 0.1f;
-                Stats.Love -= 0.1f;
-                Stats.Boredom -= 1f;
-                Stats.Cheerfulness -= 0.10f;
-            }
-            else
-            {
-                Stats.Satiety -= 0.5f;
-                Stats.Cleanliness -= 0.5f;
-            }
+        {
+            Stats.Satiety -= 0.25f * difficultyMultiplier;
+            Stats.Cleanliness -= 0.1f * difficultyMultiplier;
+            Stats.Love -= 0.1f * difficultyMultiplier;
+            Stats.Boredom -= 1f * difficultyMultiplier;
+            Stats.Cheerfulness -= 0.10f * difficultyMultiplier;
+        }
+        else
+        {
+            Stats.Satiety -= 0.5f * difficultyMultiplier;
+            Stats.Cleanliness -= 0.5f * difficultyMultiplier;
+        }
             Stats.Satiety = Math.Clamp(Stats.Satiety, 0, 10);
             Stats.Cleanliness = Math.Clamp(Stats.Cleanliness, 0, 10);
             Stats.Love = Math.Clamp(Stats.Love, 0, 10);
@@ -106,7 +107,7 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
             Stats.Cheerfulness = Math.Clamp(Stats.Cheerfulness, 0, 10);
 
             PetMenu.instance.UpdateStatSliders();
-
+            
             ParticleManager pm = ParticleManager.Instance;
             if (Stats.Cleanliness <= 2f && !pm.PoopSmell.isPlaying)
             {
@@ -119,9 +120,10 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
     }
     private void OnLargeTick()
     {
+        float difficultyMultiplier = SettingsManager.instance.Settings.difficultyMultiplier;
         if (Stats.Satiety <= 0.5f && Stats.Cleanliness <= 0.5f && Stats.Love <= 0.5f && Stats.Boredom <= 5)
         {
-            Stats.Happiness = Stats.Happiness - 0.25f;
+            Stats.Happiness = Stats.Happiness - 0.25f * difficultyMultiplier;
         }
         else
         {
@@ -189,7 +191,7 @@ public class Pet : MonoBehaviour, IObjectFunction, IInitializable
         if (rand <= 5)
         {
             MonologueWindow.instance.SaySomething();
-            monologueCooldown = 2;
+            monologueCooldown = 6;
         }
     }
 

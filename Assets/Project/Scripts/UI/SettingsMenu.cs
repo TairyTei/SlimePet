@@ -9,14 +9,15 @@ using UnityEngine.SceneManagement;
 public class SettingsMenu : MonoBehaviour, IInitializable
 {
     private int[] availableFramerate = { -1, 120, 60, 30 };
+    [SerializeField] private List<DifficultyLevel> difficultyLevels = new List<DifficultyLevel>();
     public GameObject menu;
+    public TMP_Dropdown difficultyChoise;
     public TMP_Dropdown languageChoise;
     public TMP_Dropdown framerateChoise;
     public Toggle displayStoryMark;
     public Toggle petCatchesCursor;
     public Toggle pinWindowOnTop;
     public Slider musicVolume, mainVolume, systemVolume;
-    public event Action OnSettingsUpdated;
     [SerializeField] private MusicPlayer musicPlayer;
     public GameObject[] tabs;
 
@@ -27,33 +28,26 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         Instance = this;
         LoadSettings();
         DrawLanguageDropdown();
+
+        LocalizationSystem.OnLanguageChanged += UpdateLanguageDropDown;
     }
     private void LoadSettings()
     {
-        Settings settings = SettingsManager.insntace.Settings;
+        Settings settings = SettingsManager.instance.Settings;
         petCatchesCursor.isOn = PlayerPrefs.GetInt("DoesPetCatchCursor") == 1 ? true : false;
         //sound settings
         musicVolume.value = settings.musicVolume;
         mainVolume.value = settings.mainVolume;
         systemVolume.value = settings.systemVolume;
         framerateChoise.SetValueWithoutNotify(Array.IndexOf(availableFramerate, settings.frameRate));
+        DrawDifficultyDropdown();
         displayStoryMark.SetIsOnWithoutNotify(settings.displayStoryMark);
+        Debug.Log("~" + settings.pinWindowOnTop);
         pinWindowOnTop.SetIsOnWithoutNotify(settings.pinWindowOnTop);
     }
-    public void ApplySettings()
+    public void ApplySoundSettings()
     {
-        Settings settings = SettingsManager.insntace.Settings;
-
-        //sound settings
-        settings.musicVolume = musicVolume.value;
-        PlayerPrefs.SetFloat("MusicVolume", settings.musicVolume);
-        settings.mainVolume = mainVolume.value;
-        PlayerPrefs.SetFloat("MainVolume", settings.mainVolume);
-        settings.systemVolume = systemVolume.value;
-        PlayerPrefs.SetFloat("SystemVolume", settings.systemVolume);
-
-        OnSettingsUpdated.Invoke();
-        SettingsManager.insntace.UpdateSettings();
+        SettingsManager.instance.SetSoundSettings(musicVolume.value, mainVolume.value, systemVolume.value);
     }
     public void OpenTab(int tabIndex)
     {
@@ -87,7 +81,7 @@ public class SettingsMenu : MonoBehaviour, IInitializable
     public void Close()
     {
         menu.SetActive(false);
-        ApplySettings();
+        ApplySoundSettings();
     }
 
     public void ChangeTargetFramerate()
@@ -98,23 +92,20 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         {
             frameRate = availableFramerate[framerateChoise.value];
         }
-        SettingsManager.insntace.SetFrameRate(frameRate);
-
-        if (OnSettingsUpdated != null)
-            OnSettingsUpdated.Invoke();
+        SettingsManager.instance.SetFrameRate(frameRate);
     }
     public void ChangePinWindowOnTop()
     {
-        SettingsManager.insntace.SetPinWindowOnTop(pinWindowOnTop.isOn);
+        SettingsManager.instance.SetPinWindowOnTop(pinWindowOnTop.isOn);
+    }
+    public void ChangeDifficulty()
+    {
+        float newDifficulty = difficultyLevels[difficultyChoise.value].value;
+        SettingsManager.instance.SetDifficultyMultiplier(newDifficulty);
     }
     public void SetDisplayStoryMark()
     {
-        PlayerPrefs.SetInt("DisplayStoryMark", displayStoryMark.isOn ? 1 : 0);
-        Settings settings = SettingsManager.insntace.Settings;
-        settings.displayStoryMark = displayStoryMark.isOn;
-
-        if (OnSettingsUpdated != null)
-            OnSettingsUpdated.Invoke();
+        SettingsManager.instance.SetDisplayStoryMark(displayStoryMark.isOn);
     }
     public void DoesPetCatchCursor()
     {
@@ -131,7 +122,30 @@ public class SettingsMenu : MonoBehaviour, IInitializable
         }
         languageChoise.ClearOptions();
         languageChoise.AddOptions(options);
+        UpdateLanguageDropDown();
+    }
+    public void UpdateLanguageDropDown()
+    {
         languageChoise.value = Array.IndexOf(LocalizationSystem.GetAvailableLanguages(), LocalizationSystem.CurrentLanguage);
+    }
+    private void DrawDifficultyDropdown()
+    {
+        difficultyChoise.ClearOptions();
+
+        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+        int currentIndex = 0;
+        for (int i = 0; i < difficultyLevels.Count; i++)
+        {
+            string text = ExternalTextLoader.LoadText(difficultyLevels[i].namePath);
+            options.Add(new TMP_Dropdown.OptionData(text));
+            if (SettingsManager.instance.Settings.difficultyMultiplier == difficultyLevels[i].value)
+            {
+                currentIndex = i;
+            }
+        }
+
+        difficultyChoise.AddOptions(options);
+        difficultyChoise.SetValueWithoutNotify(currentIndex);
     }
     public void ChangeLanguage()
     {
@@ -140,6 +154,17 @@ public class SettingsMenu : MonoBehaviour, IInitializable
     }
     public void OpenEditor()
     {
+        SaveManger.Instance.Save();
         SceneManager.LoadScene("PixelEditor");
     }
+    void OnDestroy()
+    {
+        LocalizationSystem.OnLanguageChanged -= UpdateLanguageDropDown;
+    }
+}
+[Serializable]
+public class DifficultyLevel
+{
+    public string namePath;
+    public float value; 
 }

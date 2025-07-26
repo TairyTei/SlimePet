@@ -14,4 +14,5 @@ public class Settings
     public int frameRate = -1;
     public bool displayStoryMark = true;
     public bool pinWindowOnTop = true;
+    public float difficultyMultiplier = 1;
 }

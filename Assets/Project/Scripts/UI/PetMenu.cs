@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PetMenu : MonoBehaviour
+public class PetMenu : MonoBehaviour, IInitializable
 {
     public RectTransform menu;
     [SerializeField] private float autoCloseIn = 10;
@@ -27,7 +27,7 @@ public class PetMenu : MonoBehaviour
     private IEnumerator currentAnimCoroutine;
     private IEnumerator autoClose;
 
-    void Start()
+    public void Initialize()
     {
         instance = this;
     }

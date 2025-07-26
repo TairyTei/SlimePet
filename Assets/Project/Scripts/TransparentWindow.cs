@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransparentWindow : MonoBehaviour
+public class TransparentWindow : MonoBehaviour, IInitializable
 {
     private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
     private static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
@@ -56,7 +56,7 @@ public class TransparentWindow : MonoBehaviour
     private static TransparentWindow instance;
     public static TransparentWindow Instance { get { return instance; } }
 
-    void Awake()
+    public void Initialize()
     {
         instance = this;
     }

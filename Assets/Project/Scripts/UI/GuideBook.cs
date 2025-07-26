@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GuideBook : MonoBehaviour
@@ -9,16 +11,19 @@ public class GuideBook : MonoBehaviour
     [SerializeField] private GameObject previousButton;
     [SerializeField] private GameObject[] pages;
     [SerializeField] private AudioClip switchPageSound;
+    [SerializeField] private TMP_Dropdown languageChoise;
     private int currentPage = 0;
 
     void Start()
     {
+        DrawLanguageDropdown();
         if (SaveManger.IsItFirstLaunch)
         {
             Open();
         }
+        LocalizationSystem.OnLanguageChanged += UpdateLanguageDropDown;
     }
-    
+
     public void Open()
     {
         OpenPage(0);
@@ -63,5 +68,31 @@ public class GuideBook : MonoBehaviour
         {
             SoundManager.instance.PlaySound(switchPageSound, 0, SoundType.System);
         }
+    }
+    public void DrawLanguageDropdown()
+    {
+        LanguageProfile[] availableLanguages = LocalizationSystem.GetAvailableLanguages();
+        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+        foreach (LanguageProfile lang in availableLanguages)
+        {
+            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData(lang.name);
+            options.Add(option);
+        }
+        languageChoise.ClearOptions();
+        languageChoise.AddOptions(options);
+        UpdateLanguageDropDown();
+    }
+    public void UpdateLanguageDropDown()
+    {
+        languageChoise.value = Array.IndexOf(LocalizationSystem.GetAvailableLanguages(), LocalizationSystem.CurrentLanguage);
+    }
+    public void ChangeLanguage()
+    {
+        string langID = LocalizationSystem.GetAvailableLanguages()[languageChoise.value].id;
+        LocalizationSystem.SetLanguage(langID);
+    }
+    void OnDestroy()
+    {
+        LocalizationSystem.OnLanguageChanged -= UpdateLanguageDropDown;
     }
 }

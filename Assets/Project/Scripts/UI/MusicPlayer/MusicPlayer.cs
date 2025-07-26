@@ -26,21 +26,21 @@ public class MusicPlayer : MonoBehaviour, IInitializable
 
     public void Initialize()
     {
-        SettingsMenu.Instance.OnSettingsUpdated += OnSettingsUpdated;
+        SettingsManager.instance.OnSettingsUpdated += OnSettingsUpdated;
         if (SaveManger.IsItFirstLaunch)
         {
             PlayerPrefs.SetInt("IsSoundTrack" + trackList[0].name + "Enabled", 1);
         }
     }
     private void OnSettingsUpdated() {
-        Settings settings = SettingsManager.insntace.Settings;
+        Settings settings = SettingsManager.instance.Settings;
         if(settings.musicVolume != source.volume)
             source.volume = settings.musicVolume;
     }
     void Start()
     {
         DrawTrackList();
-        source.volume = SettingsManager.insntace.Settings.musicVolume;
+        source.volume = SettingsManager.instance.Settings.musicVolume;
         PlayTrack(PlayerPrefs.GetInt("CurrentSoundTrack"));
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class StoriesWindow : MonoBehaviour
+public class StoriesWindow : MonoBehaviour, IInitializable
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private TextMeshProUGUI storyTitle;
@@ -18,7 +18,7 @@ public class StoriesWindow : MonoBehaviour
     private static StoriesWindow instance;
     public static StoriesWindow Instance {get { return instance; }}
 
-    void Awake()
+    public void Initialize()
     {
         instance = this;
     }

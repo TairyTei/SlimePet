@@ -15,24 +15,33 @@ public class TickController : MonoBehaviour, IInitializable
     public void Initialize()
     {
         Instance = this;
-        StartCoroutine(SmallTick());
-        StartCoroutine(LargeTick());
+        StartCoroutine(IESmallTick());
+        StartCoroutine(IELargeTick());
     }
-    private IEnumerator SmallTick()
+    private IEnumerator IESmallTick()
     {
         while (true)
         {
             yield return new WaitForSeconds(smallTick / Time.timeScale);
-            OnSmallTick.Invoke();
+            CallSmallTick();
         }
     }
-    private IEnumerator LargeTick()
+    public void CallSmallTick()
+    {
+        OnSmallTick.Invoke();
+    }
+    private IEnumerator IELargeTick()
     {
         while (true)
         {
             yield return new WaitForSeconds(largeTick / Time.timeScale);
-            OnLargeTick.Invoke();
+            CallLargeTick();
         }
-        
+
     }
+    public void CallLargeTick()
+    {
+        OnLargeTick.Invoke();
+    }
+
 }

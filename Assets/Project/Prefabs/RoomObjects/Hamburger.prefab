@@ -167,7 +167,7 @@ MonoBehaviour:
   icon: {fileID: 1555360052177356290, guid: 497562e0e34901d459bc489d66e70503, type: 3}
   id: Hamburger
   namePath: 
-  price: 3
+  price: 225
   tags:
   - food
   temporaryTags: []

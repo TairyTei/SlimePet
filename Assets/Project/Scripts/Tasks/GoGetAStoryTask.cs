@@ -17,7 +17,7 @@ public class GoGetAStoryTask : Task
     }
     public override void TaskStart()
     {
-        Settings settings = SettingsManager.insntace.Settings;
+        Settings settings = SettingsManager.instance.Settings;
         if(settings.displayStoryMark)
             Bed.instance.ActivateStoryMark(true);
         

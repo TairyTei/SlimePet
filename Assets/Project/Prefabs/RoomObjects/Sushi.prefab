@@ -167,7 +167,7 @@ MonoBehaviour:
   icon: {fileID: 8690462252592638639, guid: 497562e0e34901d459bc489d66e70503, type: 3}
   id: 
   namePath: 
-  price: 3
+  price: 150
   tags:
   - food
   temporaryTags: []

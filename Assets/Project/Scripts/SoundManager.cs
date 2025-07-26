@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour{
         source.clip = clip;
         source.pitch = UnityEngine.Random.Range(1 - pitchSpread, 1 + pitchSpread);
 
-        Settings settings = SettingsManager.insntace.Settings;
+        Settings settings = SettingsManager.instance.Settings;
         float sourceVolume = 1;
         switch(soundType){
             case SoundType.Music:

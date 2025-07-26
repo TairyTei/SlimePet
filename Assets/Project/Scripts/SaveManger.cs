@@ -9,8 +9,20 @@ public class SaveManger : MonoBehaviour, IInitializable
     [SerializeField] private float autosaveRate;
     [SerializeField] private Bed bed;
     public static SaveManger Instance { get; private set; }
+    private static bool isFirstLauchChecked = false;
     private static bool isItirstLaunch = true;
-    public static bool IsItFirstLaunch { get { return isItirstLaunch; } }
+    public static bool IsItFirstLaunch
+    {
+        get
+        {
+            if (!isFirstLauchChecked)
+            {
+                isItirstLaunch = PlayerPrefs.GetInt("LaunchedEarlier") != 1;
+                isFirstLauchChecked = true;
+            }
+            return isItirstLaunch;
+        }
+    }
 
     public void Initialize()
     {
@@ -62,9 +74,7 @@ public class SaveManger : MonoBehaviour, IInitializable
         Pet pet = Pet.Instance;
         PetStats petStats = pet.Stats;
 
-        isItirstLaunch = PlayerPrefs.GetInt("LaunchedEarlier") == 1 ? false : true;
-
-        if (isItirstLaunch)
+        if (IsItFirstLaunch)
         {
             FirstLaunch();
             return;
@@ -91,7 +101,7 @@ public class SaveManger : MonoBehaviour, IInitializable
         petStats.Expirience = PlayerPrefs.GetInt("Expirience");
         petStats.Level = PetStats.CalculateLevelFromExp(petStats.Expirience);
         petStats.StoriesQueue = PlayerPrefs.GetInt("StoriesInQueue");
-        
+
         System.DateTime now = System.DateTime.Now;
 
         int saveYear = PlayerPrefs.GetInt("SaveYear");
@@ -100,11 +110,30 @@ public class SaveManger : MonoBehaviour, IInitializable
         int saveHour = PlayerPrefs.GetInt("SaveHour");
         int saveMinute = PlayerPrefs.GetInt("SaveMinute");
         System.DateTime saveDate = new DateTime(saveYear, saveMonth, saveDay, saveHour, saveMinute, 0);
-        int difference = (int)(now - saveDate).TotalMinutes;
+        int difference = (int)(now - saveDate).TotalSeconds;
 
         LoadFurniture();
 
-        Debug.Log("С последнего сохранения прошло " + difference + " минут");
+        TickController tickController = TickController.Instance;
+
+        float timeDivider = 144;
+        int smallTickCount = Mathf.FloorToInt(difference / TickController.smallTick / timeDivider);
+        int smallTickLimit = 80;
+        smallTickCount = Mathf.Clamp(smallTickCount, 0, smallTickLimit);
+        int largeTickCount = Mathf.FloorToInt(difference / TickController.largeTick / timeDivider);
+        int largeTickLimit = 40;
+        largeTickCount = Mathf.Clamp(largeTickCount, 0, largeTickLimit);
+
+        for (int i = 0; i < smallTickCount; i++)
+        {
+            tickController.CallSmallTick();
+        }
+        for (int i = 0; i < largeTickCount; i++)
+        {
+            tickController.CallLargeTick();
+        }
+        Debug.Log($"Прошло {difference} секунд");
+        Debug.Log($"Вызвано {smallTickCount} маленьких тиков и {largeTickCount} больших");
     }
     private void LoadFurniture()
     {
@@ -116,9 +145,6 @@ public class SaveManger : MonoBehaviour, IInitializable
 
             bool isInRoom = PlayerPrefs.GetInt("Is" + obj.id + "InRoom") == 1;
 
-            Debug.Log(obj.id);
-            Debug.Log(isInRoom);
-            Debug.Log(PlayerPrefs.GetInt("Is" + obj.id + "InRoom"));
             if (!isInRoom) continue;
 
             furnitureBox.AddFurnitureToRoom(obj);
